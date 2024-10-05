@@ -30,7 +30,7 @@
         <a href="index.php">Personal , Business</a>
         <a href="contact-us.php">Rates , Charges</a>
         <a href="about-us.php">Cards</a>
-        <a href="motor-insurance.php">Digital Banking</a>
+        <a href="login.jsp">Digital Banking</a>
 
        
     </div>

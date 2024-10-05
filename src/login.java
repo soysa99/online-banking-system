@@ -24,7 +24,6 @@ public class login extends HttpServlet {
      */
     public login() {
         super();
-        conn = dbconnect.connect();
     }
 
 	/**
@@ -46,6 +45,8 @@ public class login extends HttpServlet {
 
 		System.out.println(email);
 		System.out.println(password);
+		
+		dbconnect.connect();
 	}
 
 }
