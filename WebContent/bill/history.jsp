@@ -1,0 +1,65 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill History | Your Road to Safety and Savings</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <!--font awesome-->
+    <script src="https://kit.fontawesome.com/72fb3712df.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+ 
+   <!-- Include Header JSP -->
+    <jsp:include page="../inc/header.jsp" />
+
+    <div class="flex">
+		
+		<jsp:include page="../inc/acc-dash.jsp" />
+
+        <div class=" flex-col content-wrapper m-10">
+
+            <ul class="bredcrumb">
+                <li>Dashboard</li>
+                <li><i class="fa-solid fa-chevron-right"></i></li>
+                 <li><a href="index.jsp">Bill Payment Services</a></li>  
+                <li><i class="fa-solid fa-chevron-right"></i></li>
+                <li>Bill Payment History</li>
+            </ul>
+
+                <h2>Bill Payment History</h2>
+                    
+                    <table>
+                        <tr>
+                            <th>Date</th>
+                            <th>Remark</th>
+                            <th>Cheque Number</th>
+                            <th>Currency</th>
+                            <th>Amount</th>
+                            <th>Account Balance</th>
+
+                        </tr>
+
+                        <tbody>
+                           <td></td>
+                          <td></td>
+                          <td></td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php require_once('inc/footer.php') ?>
+</body>
+
+</html>
+
+<?php mysqli_close($connection); ?>
