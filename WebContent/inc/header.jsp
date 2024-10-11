@@ -21,17 +21,29 @@
 </div>
 
 
+
 <div class="header">
     <div class="logo">
         <img src="" alt="Trust Wave">
     </div>
 
     <div class="navbar">
+    
         <a href="index.php">Personal & Business</a>
         <a href="contact-us.php">Rates & Charges</a>
         <a href="about-us.php">Cards</a>
         <a href="login.jsp">Digital Banking</a>
-
+        
+            
+     <%
+      if(session.getAttribute("name") != null){
+    	  %>
+    	  <a href="#">Welcome, <%= request.getSession().getAttribute("name") %>!</a>
+    	  
+    	  <%
+      }
+    %>
+    
        
     </div>
 </div>

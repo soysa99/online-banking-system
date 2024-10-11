@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import config.dbconnect;
 
@@ -37,7 +38,10 @@ public class login extends HttpServlet {
 
 			
 			if (rs.next()) {
-				response.getWriter().println("Login successful! Welcome, " + rs.getString("Username"));
+				HttpSession session = request.getSession();
+				session.setAttribute("name",rs.getString("Name"));
+				session.setAttribute("NIC",rs.getString("NIC"));
+				response.sendRedirect("home/home.jsp");
 			} else {
 				response.getWriter().println("Invalid Username or password");
 			}
