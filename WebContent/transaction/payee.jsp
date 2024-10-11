@@ -7,26 +7,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fund Transfer  | Your Road to Safety and Savings</title>
-    <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="../assets/style.css">
     <!--font awesome-->
     <script src="https://kit.fontawesome.com/72fb3712df.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
-<?php require_once('inc/header.php') ?>
+<!-- Include Header JSP -->
+    <jsp:include page="../inc/header.jsp" />
 
-<div class="flex">
-
-    <?php require_once('inc/acc-dash.php') ?>
+    <div class="flex">
+		
+		<jsp:include page="../inc/acc-dash.jsp" />
 
 
     <div class=" flex-col content-wrapper">
 
 
 <ul class="bredcrumb">
-<li><a href="dashboard.php">Home</a></li>
+                <li><a href="../home/home.jsp">Home</a></li>
     <li><i class="fa-solid fa-chevron-right"></i></li>
-    <li><a href="fund-transfer.php">Fund Transfer Services</a></li>
+    <li><a href="../transaction/index.jsp ">Fund Transfer Services</a></li>
+    <li><i class="fa-solid fa-chevron-right"></i></li>
+    <li>Favorite Payee</a></li>
     
 </ul>
 
@@ -38,7 +41,7 @@
 
             <!-- Search bar and + button -->
             <div class="search-container">
-            <a href="add-payee.php">   <button class="btn btn-primary align-center flex">+ Add Favorite Payee</button></a> 
+            <a href="add-payee.jsp">   <button class="btn btn-primary align-center flex">+ Add Favorite Payee</button></a> 
             </div>
 
             <form class="form flex-col">

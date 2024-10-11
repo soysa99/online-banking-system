@@ -11,53 +11,53 @@
 
 <div class="sidebar">
     <nav>
-        <a href="dashboard.php" class="menu-item">
+        <a href="../home/home.jsp" class="menu-item">
             <h3>Home</h3>
             <i class="fa-solid fa-chevron-right"></i>
         </a>
 
-        <a href=".php" class="menu-item">
+        <a href="../account/index.jsp" class="menu-item">
             <h3>Account Services</h3>
             <i class="fa-solid fa-chevron-right"></i>
         </a>
 
-        <a href="general.php" class="menu-item block">
+        <a href="../account/general.jsp" class="menu-item block">
             <h3>General Services</h3>
             <i class="fa-solid fa-chevron-right"></i>
         </a>
 
-        <a href="payment.jsp" class="menu-item">
+        <a href="../bill/index.jsp"  class="menu-item">
             <h3>Bill Payment Services </h3>
             <i class="fa-solid fa-chevron-right"></i>
         </a>
 
-        <a href="fund-transfer.php" class="menu-item">
+        <a href="../transaction/index.jsp " class="menu-item">
              <h3>Fund Transfer Services</h3>
              <i class="fa-solid fa-chevron-right"></i>
         </a>
 
-        <a href="credit-card.php" class="menu-item">
-                    <h3>Credit Card Services</h3>
+        <a href="../loan/loan.jsp" class="menu-item">
+                    <h3>Loan Services</h3>
                     <i class="fa-solid fa-chevron-right"></i>
                 </a>
 
-        <a href="statement.php" class="menu-item">
+        <a href="../account/e-statement.jsp" class="menu-item">
                     <h3>E-Statement Services</h3>
                     <i class="fa-solid fa-chevron-right"></i>
                 </a>
 
-        <a href="fixed.php" class="menu-item">
+        <a href="../account/fix-deposit.jsp" class="menu-item">
                     <h3>Fixed Deposit Services</h3>
                     <i class="fa-solid fa-chevron-right"></i>
                 </a>
 
-        <a href="loan.php" class="menu-item">
-                    <h3>Loan/Financing Services</h3>
+        <a href="../beneficiary/index.jsp" class="menu-item">
+                    <h3>Manage Beneficiary</h3>
                     <i class="fa-solid fa-chevron-right"></i>
                 </a>
 
-        <a href="folder.php" class="menu-item">
-                    <h3>My Folder</h3>
+        <a href="../setting/index.jsp" class="menu-item">
+                    <h3>Setting</h3>
                     <i class="fa-solid fa-chevron-right"></i>
                 </a>
 

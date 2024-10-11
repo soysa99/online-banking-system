@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -32,30 +32,15 @@
             <div class="flex m-10 m-10">
                 <div class="dash_container m-10">
 
-                    <a class="dash_box" href="current-balance.jsp">
+                      <a class="dash_box" href=".jsp">
                         <i class="fa-solid fa-file-invoice fa-4x"></i>
-                        <h3 class="m-10 bold">Account Balance</h3>
+                        <h3 class="m-10 bold">E-Statement Services</h3>
                     </a>
 
-
-                    <a class="dash_box" href=".jsp">
-                        <i class="fa-solid fa-user-gear fa-4x"></i>
-                        <h3 class="m-10 bold">Account Maintenance</h3>
-                    </a>
-
-                    <a class="dash_box" href=".jsp">
-                       <i class="fa-solid fa-building-columns fa-4x"></i>
-                        <h3 class="m-10 bold">Apply for Personal Loan</h3>
-                    </a>
-
-                    </div>
+             
                  </div>
       
-                 
+       </div>            
 
     </div>
     </div>
-
-</body>
-
-</html>

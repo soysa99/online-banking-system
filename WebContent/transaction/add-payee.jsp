@@ -24,7 +24,7 @@
 
 
 <ul class="bredcrumb">
-<li><a href="dashboard.php">Home</a></li>
+<li><a href="../home/home.jsp">Home</a></li>
     <li><i class="fa-solid fa-chevron-right"></i></li>
     <li><a href="fund-transfer.php">Fund Transfer Services</a></li>
     <li><i class="fa-solid fa-chevron-right"></i></li>
@@ -48,11 +48,7 @@
                         <div class="form-item flex flex-col">
                             <label for=""> Beneficiary Account Number <span class="required">*</span></label>
                             <input type="text" name="first_name" placeholder="First name">
-                                <?php
-                                    if(isset($messages) && !empty($messages['first_name'])) {
-                                        echo '<div class="error required">'.$messages['first_name'].'</div>';
-                                    }
-                                ?>
+                              
                         </div>
 
                         <div class="form-item flex flex-col">
@@ -80,7 +76,7 @@
                     <div class="flex flex-row form">
                         <div class="form-item flex flex-col">
                             <label for="">  Bank Name <span class="required">*</span></label>
-                            <input type="tex" name="bank" placeholder="Bank ">
+                            <input type="text" name="bank" placeholder="Bank ">
                              
                         </div>
 
