@@ -33,13 +33,13 @@
    			<form action="login" method="post">
                 <div class="form-item">
                     <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required>
+                    <input type="text" id="username" value="shamal01" name="username" required>
                 </div>
                
                 
                 <div class="form-item">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password"value="123" name="password" required>
                 </div>
                 
              

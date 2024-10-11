@@ -27,31 +27,30 @@ public class login extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		System.out.println("username :" + username);
-		System.out.println("password :" + password);
-		
-//		try {
-//			PreparedStatement stmt = conn.prepareStatement(sql);
-//			stmt.setString(1, email);
-//			stmt.setString(2, password);
-//			ResultSet rs = stmt.executeQuery();
-//
-//			
-//			if (rs.next()) {
-//				response.getWriter().println("Login successful! Welcome, " + rs.getString("email"));
-//			} else {
-//				response.getWriter().println("Invalid email or password");
-//			}
-//
-//		} catch (Exception e) {
-//			System.out.println(e);
-//			response.getWriter().println("Error during login: " + e.getMessage());
-//		} finally {
-//			try {
-//				if (conn != null) conn.close();
-//			} catch (Exception e) {
-//				System.out.println(e);
-//			}
-//		}
+	    String sql = "SELECT * FROM user WHERE Username = ? AND Password = ?";
+	     
+		try {
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, username);
+			stmt.setString(2, password);
+			ResultSet rs = stmt.executeQuery();
+
+			
+			if (rs.next()) {
+				response.getWriter().println("Login successful! Welcome, " + rs.getString("Username"));
+			} else {
+				response.getWriter().println("Invalid Username or password");
+			}
+
+		} catch (Exception e) {
+			System.out.println(e);
+			response.getWriter().println("Error during login: " + e.getMessage());
+		} finally {
+			try {
+				if (conn != null) conn.close();
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		}
 	}
 }
