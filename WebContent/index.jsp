@@ -8,8 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trust Wave | Your Road to Safety and Savings</title>
   
-     <link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" type="text/css" href="assets/style.css">
 
+<link rel="stylesheet" type="text/css" href="inc/header.jsp">
+<link rel="stylesheet" type="text/css" href="inc/footer.jsp">
 
     <script src="https://kit.fontawesome.com/72fb3712df.js" crossorigin="anonymous"></script>
    
@@ -32,7 +34,7 @@
     </style>
 </head>
 
-<body style="margin: 0; padding: 0";>
+<body>
 
     <!-- Include Header JSP -->
     <jsp:include page="inc/header.jsp" />
@@ -41,7 +43,7 @@
         <div class="hero-text">
             <h1 style="font-size:50px">WELCOME TO TRUST WAVE</h1>
             <p class="m-10">Your bank in your pocket</p>
-            <a href="login.jsp"><button class="m-10">LOGIN</button></a>  <a href="singup.jsp"><button class="m-10">SING UP</button></a>
+            <a href="login.jsp"><button class="m-10">LOGIN</button></a>
         </div>
     </div>
 
@@ -65,7 +67,40 @@
     <!-- Include Footer JSP -->
     <jsp:include page="inc/footer.jsp" />
 
-    
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Owl Carousel JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <!-- Custom Script -->
+    <script>
+        $(document).ready(function () {
+            $(".owl-carousel").owlCarousel({
+                loop: true,
+                margin: 10,
+                autoplay: true,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: false,
+                        loop: true
+                    },
+                    600: {
+                        items: 3,
+                        nav: false,
+                        loop: true
+                    },
+                    1000: {
+                        items: 1,
+                        nav: false,
+                        loop: true,
+                        dot: true
+                    }
+                }
+            });
+        });
+    </script>
+
 </body>
 
 </html>
