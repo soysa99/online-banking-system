@@ -1,70 +1,64 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fund Transfer | Your Road to Safety and Savings</title>
-    <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="../assets/style.css">
     <!--font awesome-->
     <script src="https://kit.fontawesome.com/72fb3712df.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
-    <?php require_once('inc/header.php') ?>
+   <!-- Include Header JSP -->
+    <jsp:include page="../inc/header.jsp" />
 
     <div class="flex">
+		
+		<jsp:include page="../inc/acc-dash.jsp" />
 
-        <?php require_once('inc/acc-dash.php') ?>
-
-
-        <div class=" flex-col content-wrapper">
+        <div class=" flex-col content-wrapper m-10">
 
 
             <ul class="bredcrumb">
                 <li><a href="dashboard.php">Home</a></li>
                 <li><i class="fa-solid fa-chevron-right"></i></li>
-                <li><a href="fund-transfer.php">Fund Transfer Services</a></li>
-                <li><i class="fa-solid fa-chevron-right"></i></li>
-                <li><a href="one-timefund.php">One Time Transfer</a></li>
+                <li><a href="setting.php">Password Change</a></li>
+
             </ul>
 
 
 
-            <div class="container">
-                <div class="cardG flex-col">
-                    <h2 class="text-center">One Time Transfe</h2>
+            <div class="container" style="display: flex; justify-content: center; align-items: center;">
 
+                <div class="cardG flex-col" style="width:800px;  ">
 
-                    <h3 class="m-10">Add Favorite Beneficiary Summary</h3>
-
-                    <ul>
-                            <li>From Account Number:</li>
-                            <li>First Name:</li>
-                            <li>Beneficiary Account Bank:</li>
-                            <li>Beneficiary Branch Name:</li>
-                            <li>Beneficiary Account Number:</li>
-                            <li>Last Name:</li>
-                            <li>Transfer Amount:</li>
-                            <li>Transfer On:</li>
-                            <li>Beneficiary Contact Number:</li>
-                            <li>Beneficiary Email:</li>
-                            <li>Remark:</li>
-                            </ul>
-
-                    <div class=" flex-col content-wrapper"></div>
-
-                    <div class="container m-10">
+                <div class="container m-10">
                         <div  class="m-10">
-                            <h3 class="m-10">Request OTP</h3>
+
+                        
+                        <h3 style="padding:10px;">New Password</h3>
+                        ***************
+
+
+                            <div class="redline">
+                        <h4 style="overflow: hidden;   margin-bottom:20px;"> Request OTP
+                        
+                             <a href="" style="color: white; float: right;margin-left: 10px; "><i class="fa-solid fa-forward"></i></a>
+                            <a href="setting.php" style="color: white; float: right; margin-left: 10px;" ><i class="fa-solid fa-circle-xmark"></i></a>
+                            <a href="password.php" style="color: white; float: right; margin-left: 10px;" ><i class="fa-solid fa-backward"></i></a>
+
+
+                        </h4>
+                    </div>
 
                             <form action="one-timefund.php" method="post">
                                     <div>
                                     <div class="form-item  flex-col"> 
-                                <label class="m-10">Delivery Method:</label> <br>
+                               
 
                                 <input class="m-10" type="radio" id="sms" name="deliveryMethod" value="SMS" checked>
                                 <label class="m-10"  for="sms">SMS</label>
@@ -80,7 +74,7 @@
 
                                 <div class="flex flex-row form">
                                 <div class="form-item flex flex-col">
-                                    <label for="">OTP <span class="required">*</span></label>
+                                    <label for="" style="padding-top:10px">OTP <span class="required">*</span></label>
                                     <input type="text" name="otp" placeholder="OTP">
                                     </div>
                                 </div>
@@ -88,9 +82,8 @@
                                     <div>
                                 <div class="form-item flex flex-col">
                                
-                                <a href="success-transfer.php"> 
-                                    <button type="reset" class="btn btn-primary" style="margin-right: 15px; width:100px" > 
-                                    <a href="success-transfer.php"> Confirm   </a></button>
+                              
+                                <a href="p-success.jsp" class="btn btn-primary" style="width:100px "> Confirm</a> 
                                 </a>
                                 </div>
 
@@ -107,10 +100,11 @@
                     </div>
                 </div>
 
-
             </div>
 
 
-</body>
+        </div>
 
-</html>
+    </div>
+</body>
+</htm>

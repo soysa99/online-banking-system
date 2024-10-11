@@ -8,71 +8,56 @@
     <title>Login Form</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
     <style>
         body {
-            background-image: url('img/login-bg.jpg');
+            background-image: url('img/singup.jpg'); /* Use relative path */
             background-size: cover;
             background-position: center;
         }
     </style>
 </head>
 <body>
-  <!-- Include Header JSP -->
+    <!-- Include Header JSP -->
     <jsp:include page="inc/header.jsp" />
-
-        <div class=" flex-col content-wrapper">
-
-        <div class="cardG" style= "width:500px;margin-left: auto; margin-right: 30px;">
-     
     
- 	    <h4 class="text-center">Welcome to Online Banking</h4>
-            <h6 class="text-center">Please log in to continue</h6>
-
-
-            
-   			<form action="login" method="post">
+    <div class="flex-col content-wrapper">
+        <div class="cardG" style="width:600px; height:600px;margin-left: auto; margin-right: 30px; background-size: cover;       /* Cover the entire background */
+            background-position: center;
+            background-repeat: no-repeat;  
+        }
+        ">
+            <h5 class="text-center" style="margin-top:10px;">Create Your Account</h5>
+            <form action="/login" method="post">
                 <div class="form-item">
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" required>
                 </div>
-               
+                
+                <div class="form-item">
+                    <label for="Number">Account Number:</label>
+                    <input type="number" id="Number" name="Number" required>
+                </div>
                 
                 <div class="form-item">
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" required>
                 </div>
                 
-             
-             <div class="form-item">
+                <div class="form-item">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                </div>
+                <div class="form-item">
                     <button type="submit" class="btn btn-primary">Login</button>
                 </div>
                 <div class="text-center">
                     <p class="forget-password">Forgot your password? <a href="/reset-password">Reset it here</a></p>
                 </div>
-
             </form>
-            
-            
-                      <div class="mt-3">
-                <% 
-                    String errorMessage = (String) request.getAttribute("errorMessage");
-                    if (errorMessage != null) {
-                %>
-                <div class="alert alert-danger">
-                    <%= errorMessage %>
-                </div>
-                <% } %>
-            </div>
-            
-            
-             
-               </div>
-           </div>
-            
-            
+        </div>
+    </div>
 
-<!-- Bootstrap JS and dependencies -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
 </html>

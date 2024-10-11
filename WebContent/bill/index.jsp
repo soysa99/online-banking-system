@@ -24,7 +24,7 @@
 
 
             <ul class="bredcrumb">
-            	<li><a href="dashboard.php">Home</a></li>
+            	                <li><a href="../home/home.jsp">Home</a></li>
                 <li><i class="fa-solid fa-chevron-right"></i></li>
                 <li><a href="index.jsp">Bill Payment Services</a></li>
             </ul>
@@ -33,12 +33,12 @@
                 <div class="dash_container m-10">
 
                     <a class="dash_box" href="payee.jsp">
-                        <i class="fa-solid fa-file-invoice fa-4x"></i>
+                        <i class="fa-solid fa-heart-circle-plus fa-4x"></i>
                         <h3 class="m-10 bold">Favourite Payee</h3>
                     </a>
 
                     <a class="dash_box" href="service.jsp">
-                        <i class="fa-solid fa-file-invoice fa-4x"></i>
+                        <i class="fa-solid fa-money-bill fa-4x"></i>
                         <h3 class="m-10 bold">Bill Payment</h3>
                     </a>
 
@@ -49,7 +49,7 @@
                     </a>
 
                     <a class="dash_box" href="#">
-                        <i class="fa-solid fa-file-invoice fa-4x"></i>
+                       <i class="fa-solid fa-clock-rotate-left fa-4x"></i>
                         <h3 class="m-10 bold">Auto Payment Maintenance</h3>
                     </a>
 

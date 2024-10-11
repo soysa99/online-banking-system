@@ -1,8 +1,7 @@
-
-
 import java.io.IOException;
 import java.sql.Connection;
-
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,42 +10,48 @@ import javax.servlet.http.HttpServletResponse;
 
 import config.dbconnect;
 
-/**
- * Servlet implementation class login
- */
 @WebServlet("/login")
 public class login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	Connection conn = null;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public login() {
-        super();
+    	super();
+    	conn = dbconnect.connect();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
 		
-		String email = request.getParameter("email");
+		// Get username and password from the form
+		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-
-		System.out.println(email);
-		System.out.println(password);
 		
-		dbconnect.connect();
+		System.out.println("username :" + username);
+		System.out.println("password :" + password);
+		
+//		try {
+//			PreparedStatement stmt = conn.prepareStatement(sql);
+//			stmt.setString(1, email);
+//			stmt.setString(2, password);
+//			ResultSet rs = stmt.executeQuery();
+//
+//			
+//			if (rs.next()) {
+//				response.getWriter().println("Login successful! Welcome, " + rs.getString("email"));
+//			} else {
+//				response.getWriter().println("Invalid email or password");
+//			}
+//
+//		} catch (Exception e) {
+//			System.out.println(e);
+//			response.getWriter().println("Error during login: " + e.getMessage());
+//		} finally {
+//			try {
+//				if (conn != null) conn.close();
+//			} catch (Exception e) {
+//				System.out.println(e);
+//			}
+//		}
 	}
-
 }

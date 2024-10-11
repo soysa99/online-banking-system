@@ -14,12 +14,6 @@
 
 
 <div class="topnav">
-  <a class="active" href="../dashboard/index.jsp">Home</a>
-  <a href="index.jsp">News</a>
-  <a href="#contact">Contact us</a>
-  <a href="#about">About us</a>
-</div>
-
 
 <div class="header">
     <div class="logo">
@@ -27,13 +21,12 @@
     </div>
 
     <div class="navbar">
-        <a href="index.php">Personal & Business</a>
-        <a href="contact-us.php">Rates & Charges</a>
-        <a href="about-us.php">Cards</a>
-        <a href="login.jsp">Digital Banking</a>
-
-       
+        <a href="index.php"><i class="fa-solid fa-gear fa-2x"></i></a>
+        <a href="contact-us.php"><i class="fa-solid fa-circle-info fa-2x"></i></a>
+        <a href="about-us.php"><i class="fa-solid fa-circle-user fa-2x"></i></a>
+        <a href="motor-insurance.php"><i class="fa-solid fa-right-from-bracket fa-2x"></i></a>
     </div>
+       
 </div>
 
 	

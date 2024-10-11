@@ -7,28 +7,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fund Transfer  | Your Road to Safety and Savings</title>
-    <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../assets/style.css">
     <!--font awesome-->
     <script src="https://kit.fontawesome.com/72fb3712df.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
-<?php require_once('inc/header.php') ?>
+ <jsp:include page="../inc/header.jsp" />
 
-<div class="flex">
-
-    <?php require_once('inc/acc-dash.php') ?>
-
+    <div class="flex">
+		
+		<jsp:include page="../inc/acc-dash.jsp" />
 
     <div class=" flex-col content-wrapper">
 
 
 <ul class="bredcrumb">
-<li><a href="dashboard.php">Home</a></li>
+                <li><a href="../home/home.jsp">Home</a></li>
     <li><i class="fa-solid fa-chevron-right"></i></li>
-    <li><a href="fund-transfer.php">Fund Transfer Services</a></li>
+    <li><a href="index.jsp">Fund Transfer Services</a></li>
     <li><i class="fa-solid fa-chevron-right"></i></li>
-    <li><a href="one-timefund.php">One Time Transfer</a></li>
+    <li><a href="service.jsp">Fund Transfer</a></li>
+    <li><i class="fa-solid fa-chevron-right"></i></li>
+    <li>One Time Transfer</li>
 </ul>
 
 
@@ -50,11 +51,7 @@
                         <div class="form-item flex flex-col">
                             <label for=""> From Account Number <span class="required">*</span></label>
                             <input type="text" name="first_name" placeholder="First name">
-                                <?php
-                                    if(isset($messages) && !empty($messages['first_name'])) {
-                                        echo '<div class="error required">'.$messages['first_name'].'</div>';
-                                    }
-                                ?>
+                               
                         </div>
 
                     </div>
@@ -106,19 +103,6 @@
 
                     </div>
 
-                    <div class="flex flex-row form">
-                        <div class="form-item flex flex-col">
-                            <label for="">Beneficiary Contact Number <span class="required">*</span></label>
-                            <input type="number" name="contact_no" placeholder="contact number">
-                                
-                        </div>
-
-                        <div class="form-item flex flex-col">
-                            <label for=""> Beneficiary Email <span class="required">*</span></label>
-                            <input type="email" name="email" placeholder="email">
-                            
-                        </div>
-                    </div>
 
                     <div class="form-item flex flex-col">
                             <label for=""> Remark <span class="required">*</span></label>
@@ -129,7 +113,7 @@
             
                 
                 <div class="flex" style="margin-top: 10px">
-                   <a href="fund-otp.php"> <button type="submit" name="submit" class="btn btn-primary" style="margin-right: 15px; width:100px"><a href="fund-otp.php">NEXT</a></button>
+                   <a href="fund-otp.jsp"> <button type="submit" name="submit" class="btn btn-primary" style="margin-right: 15px; width:100px"><a href="fund-otp.jsp">NEXT</a></button>
                     <button type="reset" class="btn btn-primary" style="margin-right: 15px; width:100px">Reset</button>
                 </div>
             </form>
