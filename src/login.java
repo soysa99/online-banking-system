@@ -29,11 +29,7 @@ public class login extends HttpServlet {
 		
 		System.out.println("username :" + username);
 		System.out.println("password :" + password);
-
-
-//		
-//		String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
-//		
+		
 //		try {
 //			PreparedStatement stmt = conn.prepareStatement(sql);
 //			stmt.setString(1, email);
