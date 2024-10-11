@@ -26,7 +26,7 @@
         <div class=" flex-col content-wrapper m-10">
 
             <ul class="bredcrumb">
-                <li>Dashboard</li>
+                           <li><a href="../home/home.jsp">Home</a></li>
                 <li><i class="fa-solid fa-chevron-right"></i></li>
                  <li><a href="index.jsp">Bill Payment Services</a></li>  
                 <li><i class="fa-solid fa-chevron-right"></i></li>
@@ -57,9 +57,8 @@
         </div>
     </div>
 
-    <?php require_once('inc/footer.php') ?>
+  <jsp:include page="../inc/footer.jsp" />
 </body>
 
 </html>
 
-<?php mysqli_close($connection); ?>

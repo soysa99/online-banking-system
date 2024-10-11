@@ -14,18 +14,17 @@
 <body>
 
 <!-- Include Header JSP -->
-<jsp:include page="../inc/header.jsp" />
+ <jsp:include page="../inc/header.jsp" />
 
-<div class="flex">
+    <div class="flex">
+		
+		<jsp:include page="../inc/acc-dash.jsp" />
 
-   <jsp:include page="../inc/acc-dash.jsp" />
-
-
-    <div class=" flex-col content-wrapper">
+        <div class=" flex-col content-wrapper m-10">
 
 
 <ul class="bredcrumb">
-<li><a href="dashboard.php">Home</a></li>
+                <li><a href="../home/home.jsp">Home</a></li>
     <li><i class="fa-solid fa-chevron-right"></i></li>
     <li><a href="index.jsp">Bill Payment Services</a></li>
     <li><i class="fa-solid fa-chevron-right"></i></li>
@@ -39,7 +38,7 @@
             <h2 class="text-center">Bill Payment Services</h2>
 
            <div class="flex" style="margin-top: 10px" >
-            <a href="one-timebill.php"><button class="btn btn-primary align-center flex service" > One Time Bill Payment</button></a>
+            <a href="one-timebill.jsp"><button class="btn btn-primary align-center flex service" > One Time Bill Payment</button></a>
            </div>
            
            <div class="flex" style="margin-top: 10px" >
