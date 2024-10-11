@@ -40,7 +40,7 @@
                         
                         
                          <div class="container mt-5">
-        <h2>Welcome, <%= request.getSession().getAttribute("username") %>!</h2>
+        <h2>Welcome, <%= request.getSession().getAttribute("name") %>!</h2>
         <p>You have successfully logged into the online banking system.</p>
     </div>
                         
