@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trust Wave | Your Road to Safety and Savings</title>
   
- <link rel="stylesheet" type="text/css" href="assets/style.css">
+<link rel="stylesheet" type="text/css" href="assets/style.css">
 <link rel="stylesheet" type="text/css" href="inc/header.jsp">
 <link rel="stylesheet" type="text/css" href="inc/footer.jsp">
 
