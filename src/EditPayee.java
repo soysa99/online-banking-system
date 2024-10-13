@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import config.dbconnect;
 
@@ -29,6 +30,7 @@ public class EditPayee extends HttpServlet {
         String payeeNickname = request.getParameter("PayeeNickname"); 
         String bank = request.getParameter("Bank");
         String branch = request.getParameter("Branch"); 
+        HttpSession session = request.getSession();
     
 
         String sql = "UPDATE payees SET PayeeName = ?, PayeeNickname = ?, Bank = ?, Branch = ? WHERE PayeeId = ?";
@@ -45,6 +47,8 @@ public class EditPayee extends HttpServlet {
         	 int rs = stmt.executeUpdate();
         	 
         	 if (rs > 0) {
+                 session.setAttribute("success_message", "Fund Payee successfully Edited!");
+
              	response.sendRedirect("transaction/payee.jsp");                 
              } else {
                  response.getWriter().println("Failed to update Payee.");
