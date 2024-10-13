@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import config.dbconnect;
 
@@ -25,6 +26,7 @@ public class UpdateBillPayee extends HttpServlet {
         
     	String PayeeID = request.getParameter("PayeeID"); 
         String description = request.getParameter("Description"); 
+        HttpSession session = request.getSession();
 
         String sql = "UPDATE billpayees SET Description = ? WHERE PayeeID = ?";
         
@@ -38,6 +40,8 @@ public class UpdateBillPayee extends HttpServlet {
         	 int rs = stmt.executeUpdate();
         	 
         	 if (rs > 0) {
+                 session.setAttribute("success_message", "Bill Payee successfully Edited!");
+
              	response.sendRedirect("bill/payee.jsp");                 
              } else {
                  response.getWriter().println("Failed to update Bill payee.");
