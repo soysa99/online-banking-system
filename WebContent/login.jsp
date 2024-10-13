@@ -7,14 +7,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Form</title>
     <!-- Bootstrap CSS -->
+    
+<link rel="stylesheet" type="text/css" href="assets/style.css">
+    
+    
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-image: url('img/login-bg.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-    </style>
+    
+    
+   <style>
+    body, html {
+        height: 100%; 
+        margin: 0; 
+    }
+
+    body {
+        background-image: url('img/login-bg.jpg');
+        background-size: cover; 
+        background-position: center; 
+        background-repeat: no-repeat; 
+        background-color: #f0f0f0; 
+    }
+</style>
 </head>
 <body>
   <!-- Include Header JSP -->

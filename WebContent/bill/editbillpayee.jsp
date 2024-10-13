@@ -7,7 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Bill Payee</title>
+    <title>Edit Bill Payee | EasyBank: Banking at Your Fingertips
+    </title>
     <link rel="stylesheet" href="../assets/style.css">
     <script>
         function validateForm() {

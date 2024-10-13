@@ -29,7 +29,7 @@
             background-image: url('img/card.jpg');
             background-size: cover;
             background-position: center;
-               background-repeat: no-repeat; 
+            background-repeat: no-repeat; 
         }
     </style>
 </head>

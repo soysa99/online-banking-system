@@ -39,7 +39,7 @@ public class AddBillPayee extends HttpServlet {
         
         BillPaymentModel billPayment = new BillPaymentModel();
         billPayment.setNIC(NIC);
-        billPayment.setBillAccountNo(Integer.parseInt(BillAccountNo));
+        billPayment.setBillAccountNo(BillAccountNo);
         billPayment.setPayeeCategory(PayeeCategory);
         billPayment.setServiceProvider(ServiceProvider);
         billPayment.setDescription(Description);        
@@ -50,7 +50,7 @@ public class AddBillPayee extends HttpServlet {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, billPayment.getNIC());
-            stmt.setInt(2, billPayment.getBillAccountNo());
+            stmt.setString(2, billPayment.getBillAccountNo());
             stmt.setString(3, billPayment.getPayeeCategory());
             stmt.setString(4, billPayment.getServiceProvider());
             stmt.setString(5, billPayment.getDescription());
@@ -59,7 +59,7 @@ public class AddBillPayee extends HttpServlet {
 
             if (rs > 0) {
             	
-            	response.sendRedirect("bill/success-payee.jsp");
+            	response.sendRedirect("bill/payee.jsp");
 
                 
             } else {

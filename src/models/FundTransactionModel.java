@@ -4,12 +4,12 @@ public class FundTransactionModel {
 	
 	private int PayeeId;
 	private String NIC;
-	private int PayeeAccountNo;
+	private String PayeeAccountNo;
 	private String PayeeName;
 	private String PayeeNickname;
 	private String Bank;
 	private String Branch;
-	private int ContactNumber;
+	
 	
 	public FundTransactionModel() {
 		super();
@@ -31,11 +31,11 @@ public class FundTransactionModel {
 		NIC = nIC;
 	}
 
-	public int getPayeeAccountNo() {
+	public String getPayeeAccountNo() {
 		return PayeeAccountNo;
 	}
 
-	public void setPayeeAccountNo(int payeeAccountNo) {
+	public void setPayeeAccountNo(String payeeAccountNo) {
 		PayeeAccountNo = payeeAccountNo;
 	}
 
@@ -71,13 +71,7 @@ public class FundTransactionModel {
 		Branch = branch;
 	}
 
-	public int getContactNumber() {
-		return ContactNumber;
-	}
-
-	public void setContactNumber(int contactNumber) {
-		ContactNumber = contactNumber;
-	}
+	
 
 	
 }

@@ -1,87 +1,109 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*" %>
+<%@ page import="config.dbconnect" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Beneficiaries | Your Road to Safety and Savings</title>
-<link rel="stylesheet" href="../assets/style.css">
-    <script src="https://kit.fontawesome.com/72fb3712df.js" crossorigin="anonymous"></script>
+    <title>Manage Beneficiaries</title>
+    <link rel="stylesheet" href="../assets/style.css">
 </head>
-
 <body>
-    <!-- Include Header JSP -->
+
+<% 
+	if (session.getAttribute("name") == null) {
+		response.sendRedirect("../login.jsp");
+		return;
+	}
+%>
     <jsp:include page="../inc/header.jsp" />
-
     <div class="flex">
-		
-		<jsp:include page="../inc/acc-dash.jsp" />
-
-        <div class=" flex-col content-wrapper m-10">
-
-
-        
-        <ul class="bredcrumb">
-                <li><a href="home.php">Home</a></li>
+        <jsp:include page="../inc/acc-dash.jsp" />
+        <div class="flex-col content-wrapper">
+            <ul class="bredcrumb">
+                <li><a href="../home/home.jsp">Home</a></li>
                 <li><i class="fa-solid fa-chevron-right"></i></li>
-                <li><a href="manage-beneficiary.php">Manage Beneficiaries</a></li>
+                <li>Manage Beneficiaries</li>
             </ul>
-
-            <div class="flex m-10 m-10">
-                <h2 class="m-10 bold">Manage Beneficiaries</h2>
+            <div class="container">
+            
+            
+                <h2 class="text-center">Manage Beneficiaries</h2>
+                 <div class="flex-col content-wrapper">
+                                             <a href="add-beneficiary.jsp" class="btn btn-primary" style="margin-top:30px;">+ Add Beneficiary</a>
+                 
+                      </div>
+                
+                <br>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Account No</th>
+                            <th>Bank</th>
+                            <th>Branch</th>
+                            <th>Nickname</th>
+                            <th>Account Type</th>
+                            <th>Beneficiary Type</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% 
+                        // Fetch beneficiaries from database
+                        String sql = "SELECT BeneficiaryID, BeneficiaryName, BeneficiaryAccountNo, Bank, Branch, BeneficiaryNickname, AccountType, BeneficiaryType FROM Beneficiaries";
+                        try (Connection conn = dbconnect.connect();
+                             PreparedStatement stmt = conn.prepareStatement(sql);
+                             ResultSet rs = stmt.executeQuery()) {
+                            while (rs.next()) {
+                                String beneficiaryID = rs.getString("BeneficiaryID");
+                                String beneficiaryName = rs.getString("BeneficiaryName");
+                                String accountNo = rs.getString("BeneficiaryAccountNo");
+                                String bank = rs.getString("Bank");
+                                String branch = rs.getString("Branch");
+                                String nickname = rs.getString("BeneficiaryNickname");
+                                String accountType = rs.getString("AccountType");
+                                String beneficiaryType = rs.getString("BeneficiaryType");
+                        %>
+                        <tr>
+                            <td><%= beneficiaryName %></td>
+                            <td><%= accountNo %></td>
+                            <td><%= bank %></td>
+                            <td><%= branch %></td>
+                            <td><%= nickname %></td>
+                            <td><%= accountType %></td>
+                            <td><%= beneficiaryType %></td>
+                            <td>
+                                <a href="edit-beneficiary.jsp?beneficiaryId=<%= beneficiaryID %>" class="btn btn-primary">Edit</a>
+                                <a href="javascript:void(0);" class="delete-button" data-id="<%= beneficiaryID %>">
+                                    <button class="btn btn-danger">Delete</button>
+                                </a>
+                            </td>
+                        </tr>
+                        <% 
+                            }
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                        %>
+                    </tbody>
+                </table>
             </div>
-
-            <div class="flex m-10 m-10">
-                <div class="dash_container m-10">
-
-                    <table class="beneficiary-table">
-                        <thead>
-                            <tr>
-                                <th>Beneficiary Name</th>
-                                <th>Account Number</th>
-                                <th>Bank Name</th>
-                                <th>Branch Name</th>
-                                <th>Beneficiary Type</th>
-                                <th>Account Type</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <a href="edit-beneficiary.php" class="edit-btn">Edit</a>
-                                    <a href="delete-beneficiary.php" class="delete-btn">Delete</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <a href="edit-beneficiary.php?id=2" class="edit-btn">Edit</a>
-                                    <a href="delete-beneficiary.php?id=2" class="delete-btn">Delete</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                </div>
             </div>
-
         </div>
-
     </div>
+    <script>
+        var deleteButtons = document.querySelectorAll('.delete-button');
 
+        deleteButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var id = this.getAttribute('data-id');
+                if (confirm('Are you sure you want to delete this beneficiary?')) {
+                    window.location.href = '<%= request.getContextPath() %>/DeleteBeneficiary?id=' + id;
+                }
+            });
+        });
+    </script>
 </body>
-
 </html>

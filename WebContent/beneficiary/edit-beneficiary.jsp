@@ -1,94 +1,109 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*" %>
+<%@ page import="config.dbconnect" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Beneficiary | Your Road to Safety and Savings</title>
-<link rel="stylesheet" href="../assets/style.css">
-    <script src="https://kit.fontawesome.com/72fb3712df.js" crossorigin="anonymous"></script>
+    <title>Edit Beneficiary</title>
+    <link rel="stylesheet" href="../assets/style.css">
 </head>
-
 <body>
-  <!-- Include Header JSP -->
     <jsp:include page="../inc/header.jsp" />
-
     <div class="flex">
-		
-		<jsp:include page="../inc/acc-dash.jsp" />
+        <jsp:include page="../inc/acc-dash.jsp" />
+        <div class="flex-col content-wrapper">
+            <ul class="bredcrumb">
+                <li><a href="../home/home.jsp">Home</a></li>
+                <li><i class="fa-solid fa-chevron-right"></i></li>
+                <li><a href="manage-beneficiary.jsp">Manage Beneficiaries</a></li>
+                <li><i class="fa-solid fa-chevron-right"></i></li>
+                <li>Edit Beneficiary</li>
+            </ul>
+            <div class="container">
+                <h2 class="text-center">Edit Beneficiary</h2>
 
-        <div class=" flex-col content-wrapper m-10">
+                <%
+                    // Get beneficiaryId from request
+                    String beneficiaryId = request.getParameter("beneficiaryId");
 
-        <ul class="bredcrumb">
-            <li><a href="home.php">Home</a></li>
-            <li><i class="fa-solid fa-chevron-right"></i></li>
-            <li><a href="manage-beneficiary.php">Manage Beneficiaries</a></li>
-            <li><i class="fa-solid fa-chevron-right"></i></li>
-            <li><a href="edit-beneficiary.php">Edit Beneficiary</a></li>
-        </ul>
-        <div class="cardG flex-col" style ="width=300px;">
+                    // Initialize variables for beneficiary data
+                    String beneficiaryName = "";
+                    String accountNo = "";
+                    String bank = "";
+                    String branch = "";
+                    String nickname = "";
+                    String accountType = "";
+                    String beneficiaryType = "";
 
-            <div class="flex m-10 m-10">
-         
-                <h2 class="m-10 bold">Edit Beneficiary</h2>
-            </div>
- 
-            <div class="flex m-10 m-10">
-                <div class="dash_container m-10">
+                    // Fetch beneficiary data from database using beneficiaryId
+                    if (beneficiaryId != null) {
+                        String query = "SELECT BeneficiaryName, BeneficiaryAccountNo, Bank, Branch, BeneficiaryNickname, AccountType, BeneficiaryType FROM Beneficiaries WHERE BeneficiaryID = ?";
+                        try (Connection conn = dbconnect.connect();
+                             PreparedStatement stmt = conn.prepareStatement(query)) {
+                            stmt.setString(1, beneficiaryId);
+                            ResultSet rs = stmt.executeQuery();
 
-                    <form action="edit-beneficiary.php" method="POST">
-                        
-                        <div class="form-group">
-                            <label for="beneficiary_name">Beneficiary Name:</label>
-                            <input type="text" id="beneficiary_name" name="beneficiary_name" required>
+                            if (rs.next()) {
+                                beneficiaryName = rs.getString("BeneficiaryName");
+                                accountNo = rs.getString("BeneficiaryAccountNo");
+                                bank = rs.getString("Bank");
+                                branch = rs.getString("Branch");
+                                nickname = rs.getString("BeneficiaryNickname");
+                                accountType = rs.getString("AccountType");
+                                beneficiaryType = rs.getString("BeneficiaryType");
+                            }
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                %>
+
+                <form action="<%= request.getContextPath() %>/UpdateBeneficiary" method="post">
+                    <input type="hidden" name="beneficiaryId" value="<%= beneficiaryId %>">
+                    <div class="flex flex-col">
+                        <div class="form-item flex flex-col">
+                            <label for="beneficiaryName">Beneficiary Name<span class="required">*</span></label>
+                            <input type="text" id="beneficiaryName" name="beneficiaryName" value="<%= beneficiaryName %>" required>
                         </div>
-
-                        <div >
-                            <label for="account_number">Account Number:</label>
-                            <input type="text" id="account_number" name="account_number" required>
+                        <div class="form-item flex flex-col">
+                            <label for="accountNo">Account Number<span class="required">*</span></label>
+                            <input type="text" id="accountNo" name="accountNo" value="<%= accountNo %>" required>
                         </div>
-
-                        <div class="form-group">
-                            <label for="bank_name">Bank Name:</label>
-                            <input type="text" id="bank_name" name="bank_name"  required>
+                        <div class="form-item flex flex-col">
+                            <label for="bank">Bank<span class="required">*</span></label>
+                            <input type="text" id="bank" name="bank" value="<%= bank %>" required>
                         </div>
-
-                        <div class="form-group">
-                            <label for="branch_name">Branch Name:</label>
-                            <input type="text" id="branch_name" name="branch_name" required>
+                        <div class="form-item flex flex-col">
+                            <label for="branch">Branch<span class="required">*</span></label>
+                            <input type="text" id="branch" name="branch" value="<%= branch %>" required>
                         </div>
-
-                        <div class="form-group">
-                            <label for="beneficiary_type">Beneficiary Type:</label>
-                            <select id="beneficiary_type" name="beneficiary_type">
-                                <option value="individual" selected>Individual</option>
-                                <option value="business">Business</option>
+                        <div class="form-item flex flex-col">
+                            <label for="nickname">Nickname<span class="required">*</span></label>
+                            <input type="text" id="nickname" name="nickname" value="<%= nickname %>" required>
+                        </div>
+                        <div class="form-item flex flex-col">
+                            <label for="accountType">Account Type<span class="required">*</span></label>
+                            <select id="accountType" name="accountType" required>
+                                <option value="Savings" <%= accountType.equals("Savings") ? "selected" : "" %>>Savings</option>
+                                <option value="Current" <%= accountType.equals("Current") ? "selected" : "" %>>Current</option>
                             </select>
                         </div>
-
-                        <div class="form-group">
-                            <label for="account_type">Account Type:</label>
-                            <select id="account_type" name="account_type">
-                                <option value="savings_account" selected>Savings Account</option>
-                                <option value="current_account">Current Account</option>
-                                <option value="fixed_deposit">Fixed Deposit Account</option>
+                        <div class="form-item flex flex-col">
+                            <label for="beneficiaryType">Beneficiary Type<span class="required">*</span></label>
+                            <select id="beneficiaryType" name="beneficiaryType" required>
+                                <option value="Family" <%= beneficiaryType.equals("Family") ? "selected" : "" %>>Family</option>
+                                <option value="Friend" <%= beneficiaryType.equals("Friend") ? "selected" : "" %>>Friend</option>
+                                <option value="Other" <%= beneficiaryType.equals("Other") ? "selected" : "" %>>Other</option>
                             </select>
                         </div>
-
-                        <div class="form-group">
-                            <input type="submit" value="Update Beneficiary"  class="btn btn-primary">
-                        </div>
-
-                    </form>
-
-                </div>
+                        <button type="submit" class="btn btn-primary">Update Beneficiary</button>
+                    </div>
+                </form>
+                <a href="manage-beneficiary.jsp" class="btn btn-secondary">Back to Manage Beneficiaries</a>
             </div>
-
         </div>
-       
-    </div>
     </div>
 </body>
-
 </html>
