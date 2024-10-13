@@ -19,18 +19,20 @@ public class login extends HttpServlet {
 
     public login() {
     	super();
-    	conn = dbconnect.connect();
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		
 		// Get username and password from the form
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-	    String sql = "SELECT * FROM user WHERE Username = ? AND Password = ?";
+	    String sql = "SELECT * FROM users WHERE Username = ? AND Password = ?";
 	     
 		try {
+			conn = dbconnect.connect();
+			
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, username);
 			stmt.setString(2, password);

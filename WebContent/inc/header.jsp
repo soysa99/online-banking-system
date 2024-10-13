@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,12 +7,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
   <link rel="stylesheet" type="text/css" href="assets/style.css">
-
 </head>
 <body>
 	
-
-
 
 <div class="topnav">
   <a class="active" href="../dashboard/index.jsp">Home</a>
@@ -22,9 +20,10 @@
 
 
 
+
 <div class="header">
     <div class="logo">
-        <img src="" alt="Trust Wave">
+        <img src="../img/logo.png" alt="Trust Wave">
     </div>
 
     <div class="navbar">
@@ -33,18 +32,14 @@
         <a href="contact-us.php">Rates & Charges</a>
         <a href="about-us.php">Cards</a>
         <a href="login.jsp">Digital Banking</a>
-        
-            
-     <%
-      if(session.getAttribute("name") != null){
-    	  %>
-    	  <a href="#">Welcome, <%= request.getSession().getAttribute("name") %>!</a>
-    	  
-    	  <%
-      }
-    %>
-    
-       
+		<%
+	      if(session.getAttribute("name") != null){
+	    	  %>
+	    	  	<a href="#">Welcome, <%= request.getSession().getAttribute("name") %>!</a>
+	    	  	<a href="../logout.jsp">Logout</a>
+	    	  <%
+	      }
+	    %>
     </div>
 </div>
 

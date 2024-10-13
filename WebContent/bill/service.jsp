@@ -13,6 +13,13 @@
 </head>
 <body>
 
+<% 
+	if (session.getAttribute("name") == null) {
+		response.sendRedirect("../login.jsp");
+		return;
+	}
+%>
+
 <!-- Include Header JSP -->
  <jsp:include page="../inc/header.jsp" />
 

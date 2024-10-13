@@ -46,24 +46,13 @@
                 <div class="cardG flex-col" style="width:700px;  ">
 
                     <div class="flex-col content-wrapper">
-                        <h2>Bill Payment Successfully !</h2>
+                        <h2>Favorite  Bill Payee Successfully Add !</h2>
 
-                    </div>
-
-                    <div class="flex-col content-wrapper ">
-                        <ul>
-                            <li>From Account Number:</li>
-                            <li>Payee category:</li>
-                            <li>Service Provider</li>
-                            <li>Billing Number</li>
-                            <li>Amount LKR </li>
-                            <li>Payment Date</li>
-                        </ul>
-                    </div>
+                    
 
                     <div class="flex" style="margin-top: 20px; justify-content: center;">
-                        <a href="../bill/service.jsp"><button class="btn btn-primary"
-                                style="margin-right: 15px; width: 200px;">Make Another Payment</button></a>
+                        <a href="../bill/payee.jsp"><button class="btn btn-primary"
+                                style="margin-right: 15px; width: 200px;">Add Another BillPayee</button></a>
                         <a href="../bill/index.jsp"><button class="btn btn-primary"
                                 style="margin-right: 15px; width: 200px;">Go Back</button></a>
                     </div>
