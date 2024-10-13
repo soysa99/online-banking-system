@@ -3,7 +3,7 @@ package models;
 public class BillPaymentModel {
 	private int PayeeID;
 	private String NIC;
-	private int BillAccountNo;
+	private String BillAccountNo;
 	private String PayeeCategory;
 	private String ServiceProvider;
 	private String Description;
@@ -23,10 +23,10 @@ public class BillPaymentModel {
 	public void setNIC(String nIC) {
 		NIC = nIC;
 	}
-	public int getBillAccountNo() {
+	public String getBillAccountNo() {
 		return BillAccountNo;
 	}
-	public void setBillAccountNo(int billAccountNo) {
+	public void setBillAccountNo(String billAccountNo) {
 		BillAccountNo = billAccountNo;
 	}
 	public String getPayeeCategory() {

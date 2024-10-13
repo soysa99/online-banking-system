@@ -8,7 +8,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Favorite Bill Payee</title>
+    <title>Favorite Bill Payee | EasyBank: Banking at Your Fingertips
+    </title>
     <link rel="stylesheet" href="../assets/style.css">
     <script src="https://kit.fontawesome.com/72fb3712df.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -84,6 +85,8 @@ if (successMessage != null) {
                             <tr>
                                 <th>Payee Description</th>
                                 <th>Billing Number</th>
+                                <th>Payee Category</th>
+                                <th>Service Provider</th>
                                 <th>Action(s)</th>
                             </tr>
                         </thead>
@@ -107,8 +110,11 @@ if (successMessage != null) {
                                 <tr>
                                     <td><%= description %></td>
                                     <td><%= billAccountNo %></td>
+                                    <td><%= payeeCategory %></td>
+                                    <td><%= serviceProvider %></td>
+                                    
                                     <td>
-                                        <div style="display: flex; gap: 10px; padding: 10px; padding-bottom: 10px; padding-left: 30px; width: 80px; height: 40px;">
+                                        <div style="display: flex; gap: 10px; padding: 10px; padding-bottom: 10px; padding-left: 30px; width: 250px; height: 40px;">
                                             <a href="editbillpayee.jsp?payeeId=<%= PayeeID %>">
                                                 <button class="btn btn-primary" style="width:100px;">Edit</button>
                                             </a>

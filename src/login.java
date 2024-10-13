@@ -45,6 +45,7 @@ public class login extends HttpServlet {
 				session.setAttribute("NIC",rs.getString("NIC"));
 				response.sendRedirect("home/home.jsp");
 			} else {
+				
 				response.getWriter().println("Invalid Username or password");
 			}
 

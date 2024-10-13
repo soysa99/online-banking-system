@@ -6,9 +6,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fund Transfer | Your Road to Safety and Savings</title>
+    <title>Bill Payment | EasyBank: Banking at Your Fingertips
+</title>
     <link rel="stylesheet" href="../assets/style.css">
     <script src="https://kit.fontawesome.com/72fb3712df.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    
 </head>
 <body>
 
@@ -55,20 +58,7 @@ if (successMessage != null) {
 }
 %>
 
-<script>
-    // Set a timeout to hide the success message after 10 seconds
-    setTimeout(function() {
-        var successMessage = document.getElementById('successMessage');
-        if (successMessage) {
-            successMessage.style.opacity = '0'; // Fade out
-            setTimeout(function() {
-                successMessage.style.display = 'none'; // Remove from the DOM
-            }, 500); // Wait for fade-out transition
-        }
-    }, 5000); // 10 seconds
-</script>
-
-<form action="<%= request.getContextPath() %>/AddBillPayee" method="POST">
+<form action="<%= request.getContextPath() %>/AddBillPayee" method="POST" onsubmit="return validateBillAccountNo()">
     <div class="flex flex-col">
         <div class="flex flex-row form">
             <div class="form-item flex flex-col">
@@ -95,7 +85,7 @@ if (successMessage != null) {
         <div class="flex flex-row form">
             <div class="form-item flex flex-col">
                 <label for="BillAccountNo">Payee Account Number (billing Number) <span class="required">*</span></label>
-                <input type="number" name="BillAccountNo" placeholder="Payee Account Number" required>
+                <input type="number" name="BillAccountNo" placeholder="Payee Account Number" required >
             </div>
         </div>
 
@@ -106,20 +96,37 @@ if (successMessage != null) {
             </div>
         </div>
 
-        <div class="flex" style="margin-top: 10px">
+        <div class="flex" style="margin-top: 10px ;gap:10px">
            
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" >Submit</button>
 
 
            
              <button type="reset" class="btn btn-primary">Reset</button>
         </div>
     </div>
+    
 </form>
+
+<script>
+    // Function to validate the Bill Account Number length
+    function validateBillAccountNo() {
+        var billAccountNo = document.getElementsByName('BillAccountNo')[0].value;
+        
+        if (billAccountNo.length < 9 || billAccountNo.length > 15) {
+            alert("Bill Account Number must be between 10 and 15 digits.");
+            return false; // Prevent form submission if validation fails
+        }
+        return true; // Allow form submission if validation passes
+    }
+</script>
             </div>
         </div>
     </div>
 </div>
+
+
+
 
 <script>
     const providers = {
@@ -149,21 +156,13 @@ if (successMessage != null) {
     }
 </script>
 
-   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const closeButton = document.getElementById('close-message');
-        const successMessage = document.getElementById('success-message');
 
-        if (closeButton && successMessage) {
-            closeButton.addEventListener('click', function() {
-                successMessage.style.opacity = '0'; // Fade out
-                setTimeout(function() {
-                    successMessage.style.display = 'none'; // Hide after fade out
-                }, 500); // Match the timeout with CSS transition duration
-            });
-        }
-    });
-</script>
+
+
+
+
+
+ 
 
 </body>
 </html>

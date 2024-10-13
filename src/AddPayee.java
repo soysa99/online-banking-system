@@ -47,7 +47,7 @@ public class AddPayee extends HttpServlet {
         
         FundTransactionModel fundPayee = new FundTransactionModel();
         fundPayee.setNIC(NIC);
-        fundPayee.setPayeeAccountNo(Integer.parseInt(PayeeAccountNo));
+        fundPayee.setPayeeAccountNo(PayeeAccountNo);
         fundPayee.setPayeeName(PayeeName);
         fundPayee.setPayeeNickname(PayeeNickname);
         fundPayee.setBank(Bank); 
@@ -59,7 +59,7 @@ public class AddPayee extends HttpServlet {
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
 
                stmt.setString(1, fundPayee.getNIC());
-               stmt.setInt(2, fundPayee.getPayeeAccountNo());
+               stmt.setString(2, fundPayee.getPayeeAccountNo());
                stmt.setString(3, fundPayee.getPayeeName());
                stmt.setString(4, fundPayee.getPayeeNickname());
                stmt.setString(5, fundPayee.getBank());

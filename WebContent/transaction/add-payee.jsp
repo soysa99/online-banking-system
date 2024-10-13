@@ -6,7 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fund Transfer  | Your Road to Safety and Savings</title>
+    <title>Fund Transfer  | EasyBank: Banking at Your Fingertips
+</title>
     <link rel="stylesheet" href="../assets/style.css">
 	<script src="https://kit.fontawesome.com/72fb3712df.js" crossorigin="anonymous"></script>
  </head>
@@ -42,21 +43,26 @@
 
     <div class="container">
         <div class="cardG flex-col">
-            <h2 class="text-center">Favorite Payee</h2>
+            <h2 class="text-center">Add Payee for Fund Transactions</h2>
+            
+            <p>This form enables users to add a new payee to their favorites for quick and easy fund transfers. 
+            Users can enter the payee’s details, streamlining future transactions.</p> <br>
 
 
-            <h3 class="m-10">Add Favorite Beneficiary Form</h3>
+            <h3 class="m-10">Add Favorite Payee Form</h3>
 
-<form action="<%= request.getContextPath() %>/AddPayee" method="POST">
+<form action="<%= request.getContextPath() %>/AddPayee" method="POST" onsubmit="return validatePayeeAccountNo()">
 
                 <div class="flex flex-col">
                  
                     <div class="flex flex-row form">
                         <div class="form-item flex flex-col">
                             <label for=""> Beneficiary Account Number <span class="required">*</span></label>
-                            <input type="text" name="PayeeAccountNo" placeholder="PayeeAccountNo" required>
+                            <input type="text" name="PayeeAccountNo" id="PayeeAccountNo" placeholder="PayeeAccountNo" required>
                               
                         </div>
+                        
+    
 
                         <div class="form-item flex flex-col">
                             <label for=""> Beneficiary Name<span class="required">*</span></label>
@@ -141,30 +147,13 @@
     
     
     <script>
-    const providers = {
-        electricity: ["Ceylon Electricity Board (CEB)"],
-        water: ["National Water Supply and Drainage Board (NWSDB)"],
-        telecommunications: ["Dialog Axiata", "Mobitel", "Hutch"],
-        insurance: ["Sri Lanka Insurance Corporation", "Janashakthi Insurance"],
-        housing: [], 
-        other: [] 
-    };
-
-    function updateProviders() {
-        const category = document.getElementById('payeeCategory').value;
-        const providerSelect = document.getElementById('serviceProvider');
-
-        // Clear previous options
-        providerSelect.innerHTML = '<option value="">Select Service Provider</option>';
-
-        if (providers[category]) {
-            providers[category].forEach(provider => {
-                const option = document.createElement('option');
-                option.value = provider;
-                option.textContent = provider;
-                providerSelect.appendChild(option);
-            });
+    function validatePayeeAccountNo() {
+        const payeeAccountNo = document.getElementById('PayeeAccountNo').value;
+        if (payeeAccountNo.length < 10 || payeeAccountNo.length > 12) {
+            alert('Payee Account Number must be between 10 and 12 characters.');
+            return false; // Prevent form submission
         }
+        return true; // Allow form submission
     }
 </script>
 
