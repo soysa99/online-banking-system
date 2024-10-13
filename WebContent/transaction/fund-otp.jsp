@@ -14,6 +14,13 @@
 
 <body>
 
+<% 
+	if (session.getAttribute("name") == null) {
+		response.sendRedirect("../login.jsp");
+		return;
+	}
+%>
+
    <jsp:include page="../inc/header.jsp" />
 
     <div class="flex">

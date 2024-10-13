@@ -15,6 +15,13 @@
 </head>
 
 <body>
+
+<% 
+	if (session.getAttribute("name") == null) {
+		response.sendRedirect("../login.jsp");
+		return;
+	}
+%>
      <jsp:include page="../inc/header.jsp" />
 
     <div class="flex">
@@ -39,75 +46,7 @@
                         <div class="dash_box">
                         
                         
-                         <div class="container mt-5">
-        <h2>Welcome, <%= request.getSession().getAttribute("name") %>!</h2>
-        <p>You have successfully logged into the online banking system.</p>
-    </div>
-                        
-                            <a href="">
-                                <i class="fa-solid fa-file-invoice fa-4x" ></i>
-                            </a>
-                            <h3 class="m-10">Quick Inquiry</h3>
-                            <a href="contact-us.php" class="btn btn-primary">Fill The Form</a>
-                        </div>
-
-                        <div class="dash_box">
-                            <div class="flex flex-col">
-                                <a href="">
-                                    <i class="fa-solid fa-phone-volume"></i>
-                                </a>
-                                <h3>Email</h3>
-                                <a href="">info@drivepeak.lk</a>
-                            </div>
-
-                            <div class="flex flex-col m-10">
-                                <h3>Call our 24/7 Hotline</h3>
-                                <a href="">+94 11 2 1234 345</a>
-                            </div>
-
-                            <div class="flex flex-col">
-                                <h3>Follow us on</h3>
-                                <div class="flex justify-content-between">
-                                    <a href="">
-                                        <i class="fa-brands fa-facebook"></i>
-                                    </a>
-                                    <a href="">
-                                        <i class="fa-brands fa-twitter"></i>
-                                    </a>
-                                    <a href="">
-                                        <i class="fa-brands fa-instagram"></i>
-                                    </a>
-                                    <a href="">
-                                        <i class="fa-brands fa-linkedin"></i>
-                                    </a>
-                                    <a href="">
-                                        <i class="fa-brands fa-youtube"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="dash_box">
-                            <a href="">
-                                <i class="fa-solid fa-map-location-dot"></i>
-                            </a>
-                            <h3 class="m-10">Find Our Nearest Branch</h3>
-                            <a href="contact-us.php" class="btn btn-primary">find Now </a>
-                        </div>
-
-                        <div class="dash_box">
-                            <a href="">
-                                <i class="fa-solid fa-download view"></i>
-                            </a>
-                            <h3 class="m-10">Drive Peak Policy Book </h3>
-                            <a href="contact-us.php" class="btn btn-primary">Download Now</a>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
+                 
                 <!-- //contact us -->
 
 
@@ -117,7 +56,9 @@
 
         </div>
     </div>
+</div>
 
+        </div>
    
 </body>
 

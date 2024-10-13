@@ -14,6 +14,13 @@
     <script src="https://kit.fontawesome.com/72fb3712df.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
+<% 
+	if (session.getAttribute("name") == null) {
+		response.sendRedirect("../login.jsp");
+		return;
+	}
+%>
   <jsp:include page="../inc/header.jsp" />
 
     <div class="flex">
