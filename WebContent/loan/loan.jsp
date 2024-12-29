@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fund Transfer  | Your Road to Safety and Savings</title>
+    <title>lone | Your Road to Safety and Savings</title>
     <link rel="stylesheet" href="../assets/style.css">
     <!--font awesome-->
     <script src="https://kit.fontawesome.com/72fb3712df.js" crossorigin="anonymous"></script>
