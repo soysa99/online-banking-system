@@ -1,0 +1,62 @@
+<%@ page import="java.util.ArrayList, models.BillPayeeModel" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Payee Summary</title>
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Favorite Bill Payee Summary</h2>
+
+        <!-- Dropdown for Payee Name -->
+        <form class="content-wrapper form">
+            <div class="form-item">
+                <label for="payeeName">Bill Payee Name</label>
+                <select id="payeeName" name="payeeName" required>
+                    <% 
+                        ArrayList<BillPayeeModel> payees = (ArrayList<BillPayeeModel>) request.getAttribute("payees");
+                        for (BillPayeeModel payee : payees) {
+                    %>
+                        <option value="<%= payee.getPayeeID() %>">
+                            <%= payee.getServiceProvider() %>
+                        </option>
+                    <% } %>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <!-- Payee Summary Table -->
+        <h3 class="m-10">Payee Summary</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Payee ID</th>
+                    <th>NIC</th>
+                    <th>Bill Account No</th>
+                    <th>Payee Category</th>
+                    <th>Service Provider</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% 
+                    for (BillPayeeModel payee : payees) {
+                %>
+                    <tr>
+                        <td><%= payee.getPayeeID() %></td>
+                        <td><%= payee.getNic() %></td>
+                        <td><%= payee.getBillAccountNo() %></td>
+                        <td><%= payee.getPayeeCategory() %></td>
+                        <td><%= payee.getServiceProvider() %></td>
+                        <td><%= payee.getDescription() %></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

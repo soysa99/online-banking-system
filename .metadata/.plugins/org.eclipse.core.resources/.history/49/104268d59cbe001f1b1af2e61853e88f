@@ -1,0 +1,45 @@
+package servlets;
+
+import models.BillPayeeModel;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.sql.*;
+import java.util.ArrayList;
+
+@WebServlet("/BillPayeeServlet")
+public class BillPayeeServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String jdbcURL = "jdbc:mysql://localhost:3306/your_database_name"; // Replace with your DB name
+        String dbUser = "root"; // Replace with your DB user
+        String dbPassword = ""; // Replace with your DB password
+
+        ArrayList<BillPayeeModel> payees = new ArrayList<>();
+
+        try (Connection conn = DriverManager.getConnection(jdbcURL, dbUser, dbPassword)) {
+            String query = "SELECT PayeeID, NIC, BillAccountNo, PayeeCategory, ServiceProvider, Description FROM BillPayee";
+            try (Statement statement = conn.createStatement(); ResultSet resultSet = statement.executeQuery(query)) {
+                while (resultSet.next()) {
+                    BillPayeeModel payee = new BillPayeeModel(
+                            resultSet.getInt("PayeeID"),
+                            resultSet.getString("NIC"),
+                            resultSet.getString("BillAccountNo"),
+                            resultSet.getString("PayeeCategory"),
+                            resultSet.getString("ServiceProvider"),
+                            resultSet.getString("Description")
+                    );
+                    payees.add(payee);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        request.setAttribute("payees", payees);
+        request.getRequestDispatcher("billPayee.jsp").forward(request, response);
+    }
+}

@@ -1,0 +1,92 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Summary</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <!--font awesome-->
+    <script src="https://kit.fontawesome.com/72fb3712df.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<% 
+    if (session.getAttribute("name") == null) {
+        response.sendRedirect("../login.jsp");
+        return;
+    }
+%>
+
+    <!-- Include Header JSP -->
+    <jsp:include page="../inc/header.jsp" />
+
+    <div class="flex">
+
+        <jsp:include page="../inc/acc-dash.jsp" />
+
+        <div class="flex-col content-wrapper m-10">
+
+            <h2 class="text-center">Payment Summary</h2>
+
+            <div class="container">
+                <div class="cardG flex-col">
+
+                    <h3 class="m-10">Here are your payment details:</h3>
+
+                    <table class="summary-table">
+                        <tr>
+                            <th>Field</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>From Account Number</td>
+                            <td><%= request.getParameter("AccountNo") %></td>
+                        </tr>
+                        <tr>
+                            <td>Billing Account Number</td>
+                            <td><%= request.getParameter("BillAccountNo") %></td>
+                        </tr>
+                        <tr>
+                            <td>Payee Category</td>
+                            <td><%= request.getParameter("PayeeCategory") %></td>
+                        </tr>
+                        <tr>
+                            <td>Service Provider</td>
+                            <td><%= request.getParameter("ServiceProvider") %></td>
+                        </tr>
+                        <tr>
+                            <td>Amount (LKR)</td>
+                            <td><%= request.getParameter("Amount") %></td>
+                        </tr>
+                        <tr>
+                            <td>Payment Date</td>
+                            <td><%= request.getParameter("PaymentDate") %></td>
+                        </tr>
+                    </table>
+
+                    <div class="flex" style="margin-top: 20px;">
+                        <form action="confirm-payment.jsp" method="post">
+                            <!-- Hidden fields to pass data to the next page -->
+                            <input type="hidden" name="AccountNo" value="<%= request.getParameter("AccountNo") %>">
+                            <input type="hidden" name="BillAccountNo" value="<%= request.getParameter("BillAccountNo") %>">
+                            <input type="hidden" name="PayeeCategory" value="<%= request.getParameter("PayeeCategory") %>">
+                            <input type="hidden" name="ServiceProvider" value="<%= request.getParameter("ServiceProvider") %>">
+                            <input type="hidden" name="Amount" value="<%= request.getParameter("Amount") %>">
+                            <input type="hidden" name="PaymentDate" value="<%= request.getParameter("PaymentDate") %>">
+
+                            <button type="submit" class="btn btn-primary" style="margin-right: 15px;">Confirm</button>
+                        </form>
+                        <a href="one-timebill.jsp" class="btn btn-secondary" style="margin-left: 15px;">Edit Details</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

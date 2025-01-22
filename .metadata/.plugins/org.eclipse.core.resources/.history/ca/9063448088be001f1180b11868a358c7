@@ -1,0 +1,81 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Summary</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/72fb3712df.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<% 
+    // Check if the session is valid
+    if (session.getAttribute("name") == null) {
+        response.sendRedirect("../login.jsp");
+        return;
+    }
+%>
+
+    <!-- Include Header JSP -->
+    <jsp:include page="../inc/header.jsp" />
+
+    <div class="flex">
+
+        <jsp:include page="../inc/acc-dash.jsp" />
+
+        <div class="flex-col content-wrapper m-10">
+
+            <h2 class="text-center">Payment Summary</h2>
+
+            <div class="container">
+                <div class="cardG flex-col">
+
+        <h2 class="text-center">OTP Verification</h2>
+
+        <div class="summary-section">
+            <h3>Summary</h3>
+            <p><strong>From Account Number:</strong> <%= request.getParameter("AccountNo") %></p>
+            <p><strong>Payee Category:</strong> <%= request.getParameter("PayeeCategory") %></p>
+            <p><strong>Service Provider:</strong> <%= request.getParameter("ServiceProvider") %></p>
+            <p><strong>Billing Number:</strong> <%= request.getParameter("BillAccountNo") %></p>
+            <p><strong>Amount LKR:</strong> <%= request.getParameter("Amount") %></p>
+            <p><strong>Payment Date:</strong> <%= request.getParameter("PaymentDate") %></p>
+        </div>
+
+        <div class="otp-section">
+            <h3>Enter OTP</h3>
+            <form action="confirm-payment.jsp" method="post">
+                <!-- Hidden Fields to Pass Data to Next Page -->
+                <input type="hidden" name="AccountNo" value="<%= request.getParameter("AccountNo") %>">
+                <input type="hidden" name="PayeeCategory" value="<%= request.getParameter("PayeeCategory") %>">
+                <input type="hidden" name="ServiceProvider" value="<%= request.getParameter("ServiceProvider") %>">
+                <input type="hidden" name="BillAccountNo" value="<%= request.getParameter("BillAccountNo") %>">
+                <input type="hidden" name="Amount" value="<%= request.getParameter("Amount") %>">
+                <input type="hidden" name="PaymentDate" value="<%= request.getParameter("PaymentDate") %>">
+
+                <!-- OTP Input -->
+                <div class="form-item">
+                    <label for="otp">OTP Code:</label>
+                    <input type="text" id="otp" name="otp" placeholder="Enter OTP" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Confirm Payment</button>
+            </form>
+        </div>
+    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

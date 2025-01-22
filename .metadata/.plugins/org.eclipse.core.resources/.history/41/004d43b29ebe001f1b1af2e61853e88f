@@ -1,0 +1,52 @@
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="javax.servlet.http.HttpSession" %>
+<%@ page import="javax.servlet.ServletContext" %>
+<%@ page import="javax.servlet.http.HttpServletRequest" %>
+<%@ page import="javax.servlet.http.HttpServletResponse" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favorite Bill Payees</title>
+</head>
+<body>
+
+<h2>List of Favorite Bill Payees</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>PayeeID</th>
+            <th>NIC</th>
+            <th>Bill Account No</th>
+            <th>Payee Category</th>
+            <th>Service Provider</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%
+            ResultSet rs = (ResultSet) request.getAttribute("payeeList");
+
+            try {
+                while (rs != null && rs.next()) {
+        %>
+        <tr>
+            <td><%= rs.getInt("PayeeID") %></td>
+            <td><%= rs.getString("NIC") %></td>
+            <td><%= rs.getString("BillAccountNo") %></td>
+            <td><%= rs.getString("PayeeCategory") %></td>
+            <td><%= rs.getString("ServiceProvider") %></td>
+            <td><%= rs.getString("Description") %></td>
+        </tr>
+        <% 
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        %>
+    </tbody>
+</table>
+
+</body>
+</html>

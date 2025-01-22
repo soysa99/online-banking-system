@@ -1,0 +1,166 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Your Road to Safety and Savings</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/72fb3712df.js" crossorigin="anonymous"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+
+    <style> 
+        /* Flexbox container to place the calendar and calculator in one line */
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        /* Calendar styling */
+        #calendar { 
+            width: 45%; 
+            height: 300px; /* Set calendar height */
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+
+        /* Calculator styling */
+        #calcu { 
+            width: 45%; 
+            border: 1px solid black; 
+        }
+
+        /* Styling for calculator buttons */
+        input[type="button"] { 
+            width: 100%; 
+            padding: 20px 40px; 
+            background-color: green; 
+            color: white; 
+            font-size: 24px; 
+            font-weight: bold; 
+            border: none; 
+            border-radius: 5px; 
+        }
+
+        input[type="text"] { 
+            padding: 20px 30px; 
+            font-size: 24px; 
+            font-weight: bold; 
+            border: none; 
+            border-radius: 5px; 
+            border: 2px solid black; 
+        }
+    </style>
+</head>
+
+<body>
+
+    <% 
+        if (session.getAttribute("name") == null) {
+            response.sendRedirect("../login.jsp");
+            return;
+        }
+    %>
+    <jsp:include page="../inc/header.jsp" />
+
+    <div class="flex">
+        <jsp:include page="../inc/acc-dash.jsp" />
+
+        <div class="flex-col content-wrapper">
+            <ul class="bredcrumb">
+                <li><a href="dashboard.php">Home</a></li>
+            </ul>
+
+            <div class="flex-container">
+                <!-- Calendar Section -->
+                <div id="calendar"></div>
+
+                <!-- Calculator Section -->
+                <div id="calcu">
+                    <table>
+                        <tr>
+                            <td colspan="3"><input type="text" id="result"></td>
+                            <td><input type="button" value="c" onclick="clr()" /> </td>
+                        </tr>
+                        <tr>
+                            <td><input type="button" value="1" onclick="dis('1')"> </td>
+                            <td><input type="button" value="2" onclick="dis('2')"> </td>
+                            <td><input type="button" value="3" onclick="dis('3')"> </td>
+                            <td><input type="button" value="/" onclick="dis('/')"> </td>
+                        </tr>
+                        <tr>
+                            <td><input type="button" value="4" onclick="dis('4')"> </td>
+                            <td><input type="button" value="5" onclick="dis('5')"> </td>
+                            <td><input type="button" value="6" onclick="dis('6')"> </td>
+                            <td><input type="button" value="*" onclick="dis('*')"> </td>
+                        </tr>
+                        <tr>
+                            <td><input type="button" value="7" onclick="dis('7')"> </td>
+                            <td><input type="button" value="8" onclick="dis('8')"> </td>
+                            <td><input type="button" value="9" onclick="dis('9')"> </td>
+                            <td><input type="button" value="-" onclick="dis('-')"> </td>
+                        </tr>
+                        <tr>
+                            <td><input type="button" value="0" onclick="dis('0')"> </td>
+                            <td><input type="button" value="." onclick="dis('.')"> </td>
+                            <td><input type="button" value="=" onclick="solve()"> </td>
+                            <td><input type="button" value="+" onclick="dis('+')"> </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function that display value in the result field
+        function dis(val) { 
+            document.getElementById("result").value += val;
+        }
+
+        // Handle key events
+        function myFunction(event) { 
+            if ('0123456789+-*/'.indexOf(event.key) !== -1) {
+                document.getElementById("result").value += event.key;
+            }
+        }
+
+        var cal = document.getElementById("calcu"); 
+        cal.onkeyup = function (event) { 
+            if (event.keyCode === 13) { 
+                solve(); 
+            } 
+        }
+
+        // Function that solves the expression
+        function solve() { 
+            let x = document.getElementById("result").value;
+            let y = math.evaluate(x);  // Assuming you have math.js for eval
+            document.getElementById("result").value = y;
+        }
+
+        // Function to clear the display
+        function clr() { 
+            document.getElementById("result").value = "";
+        }
+
+        // Initialize FullCalendar
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                height: 'auto',  // Adjust calendar's height automatically
+            });
+            calendar.render();
+        });
+    </script>
+
+</body>
+
+</html>

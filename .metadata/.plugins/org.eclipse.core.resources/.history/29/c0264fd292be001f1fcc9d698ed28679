@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorite Bill Payee</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <script src="https://kit.fontawesome.com/72fb3712df.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<%
+    if (session.getAttribute("name") == null) {
+        response.sendRedirect("../login.jsp");
+        return;
+    }
+%>
+
+<!-- Include Header JSP -->
+<jsp:include page="../inc/header.jsp" />
+
+<div class="flex">
+    <jsp:include page="../inc/acc-dash.jsp" />
+
+    <div class="flex-col content-wrapper m-10">
+
+        <ul class="bredcrumb">
+            <li><a href="../home/home.jsp">Home</a></li>
+            <li><i class="fa-solid fa-chevron-right"></i></li>
+            <li><a href="fund-transfer.php">Bill Payment Services</a></li>
+            <li><i class="fa-solid fa-chevron-right"></i></li>
+            <li><a href="one-timebill.php">One Time Bill Payment</a></li>
+        </ul>
+
+        <div class="container">
+            <div class="cardG">
+                <h2 class="text-center">Favorite Bill Payee</h2>
+
+                <!-- Form Section -->
+                <form class="content-wrapper form">
+                    <div class="form-item">
+                        <label for="payeeName">Payee Name</label>
+                        <input type="text" id="payeeName" name="payeeName" placeholder="Enter Payee Name" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="payeeAccountNo">Account Number</label>
+                        <input type="text" id="payeeAccountNo" name="payeeAccountNo" placeholder="Enter Account Number" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="contactNumber">Contact Number</label>
+                        <input type="text" id="contactNumber" name="contactNumber" placeholder="Enter Contact Number" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="branch">Branch</label>
+                        <input type="text" id="branch" name="branch" placeholder="Enter Branch" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Payee</button>
+                </form>
+
+                <!-- Summary Section -->
+                <h3 class="m-10">Payee Summary</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Payee Name</th>
+                            <th>Account Number</th>
+                            <th>Contact Number</th>
+                            <th>Branch</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>John Doe</td>
+                            <td>123456789</td>
+                            <td>9876543210</td>
+                            <td>Main Branch</td>
+                        </tr>
+                        <!-- Add dynamic rows here -->
+                    </tbody>
+                </table>
+
+                <!-- OTP Section -->
+                <h3 class="m-10">Request OTP</h3>
+                <div class="flex">
+                    <input type="text" class="otp" placeholder="Enter OTP">
+                    <button class="btn btn-primary">Verify OTP</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Include Footer JSP -->
+<jsp:include page="../inc/footer.jsp" />
+
+</body>
+
+</html>
