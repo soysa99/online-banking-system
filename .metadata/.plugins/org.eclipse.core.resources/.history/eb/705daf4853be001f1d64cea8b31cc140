@@ -1,0 +1,154 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.util.Random" %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Time Bill Payment</title>
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+
+<body>
+<% 
+    if (session.getAttribute("name") == null) {
+        response.sendRedirect("../login.jsp");
+        return;
+    }
+
+    // Form Submission Logic
+    if (request.getParameter("submitForm") != null) {
+        session.setAttribute("fromAccount", request.getParameter("fromAccount"));
+        session.setAttribute("billingAccount", request.getParameter("billingAccount"));
+        session.setAttribute("payeeCategory", request.getParameter("payeeCategory"));
+        session.setAttribute("serviceProvider", request.getParameter("serviceProvider"));
+        session.setAttribute("amount", request.getParameter("amount"));
+        session.setAttribute("paymentDate", request.getParameter("paymentDate"));
+
+        response.sendRedirect("oneTimeBillSummary.jsp");
+        return;
+    }
+
+    // OTP Generation Logic
+    if (request.getParameter("requestOtp") != null) {
+        String accountNo = (String) session.getAttribute("fromAccount");
+        String otpCode = String.format("%06d", new Random().nextInt(999999));
+        java.sql.Timestamp expiration = new java.sql.Timestamp(System.currentTimeMillis() + 300000); // 5 minutes validity
+
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/your_database", "username", "password");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO OTP (AccountNo, OTPCode, Expiration) VALUES (?, ?, ?)");
+            pstmt.setString(1, accountNo);
+            pstmt.setString(2, otpCode);
+            pstmt.setTimestamp(3, expiration);
+            pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+
+            // Simulate OTP delivery (e.g., via SMS or Email)
+            out.println("<script>alert('Your OTP is: " + otpCode + "');</script>");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // OTP Validation Logic
+    if (request.getParameter("validateOtp") != null) {
+        String enteredOtp = request.getParameter("otp");
+        boolean isValidOtp = false;
+
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/your_database", "username", "password");
+            PreparedStatement pstmt = conn.prepareStatement(
+                "SELECT * FROM OTP WHERE AccountNo = ? AND OTPCode = ? AND Expiration > NOW() AND IsUsed = FALSE"
+            );
+            pstmt.setString(1, (String) session.getAttribute("fromAccount"));
+            pstmt.setString(2, enteredOtp);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                isValidOtp = true;
+
+                // Mark OTP as used
+                PreparedStatement updateStmt = conn.prepareStatement("UPDATE OTP SET IsUsed = TRUE WHERE OTPID = ?");
+                updateStmt.setInt(1, rs.getInt("OTPID"));
+                updateStmt.executeUpdate();
+                updateStmt.close();
+            }
+
+            rs.close();
+            pstmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (isValidOtp) {
+            response.sendRedirect("paymentSuccess.jsp");
+            return;
+        } else {
+            out.println("<script>alert('Invalid or expired OTP. Please try again.');history.back();</script>");
+            return;
+        }
+    }
+%>
+
+<jsp:include page="../inc/header.jsp" />
+
+<div class="flex">
+    <jsp:include page="../inc/acc-dash.jsp" />
+
+    <div class="container">
+        <div class="cardG flex-col">
+            <h2>One Time Bill Payment</h2>
+
+            <!-- Payment Form -->
+            <form method="post">
+                <div class="form-item">
+                    <label>From Account Number:</label>
+                    <input type="text" name="fromAccount" required>
+                </div>
+                <div class="form-item">
+                    <label>Billing Account Number:</label>
+                    <input type="text" name="billingAccount" required>
+                </div>
+                <div class="form-item">
+                    <label>Payee Category:</label>
+                    <input type="text" name="payeeCategory" required>
+                </div>
+                <div class="form-item">
+                    <label>Service Provider:</label>
+                    <input type="text" name="serviceProvider" required>
+                </div>
+                <div class="form-item">
+                    <label>Amount (LKR):</label>
+                    <input type="number" step="0.01" name="amount" required>
+                </div>
+                <div class="form-item">
+                    <label>Payment Date:</label>
+                    <input type="date" name="paymentDate" required>
+                </div>
+                <button type="submit" name="submitForm" class="btn btn-primary">Submit</button>
+            </form>
+
+            <!-- Request OTP -->
+            <form method="post">
+                <button type="submit" name="requestOtp" class="btn btn-primary">Request OTP</button>
+            </form>
+
+            <!-- Validate OTP -->
+            <form method="post">
+                <div class="form-item">
+                    <label>OTP:</label>
+                    <input type="text" name="otp" required>
+                </div>
+                <button type="submit" name="validateOtp" class="btn btn-primary">Validate OTP</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

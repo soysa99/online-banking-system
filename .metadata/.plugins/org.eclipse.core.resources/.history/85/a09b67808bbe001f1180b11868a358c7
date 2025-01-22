@@ -1,0 +1,46 @@
+<%@ page import="java.sql.*, java.util.*" %>
+<%@ page contentType="application/json" %>
+
+<%
+    String accountNo = request.getParameter("accountNo");
+    Map<String, Object> response = new HashMap<>();
+
+    if (accountNo == null || accountNo.isEmpty()) {
+        response.put("success", false);
+        response.put("message", "Account number is required.");
+    } else {
+        // Generate a random 6-digit OTP
+        int otp = new Random().nextInt(900000) + 100000;
+
+        try {
+            // Connect to the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/YourDatabase", "username", "password");
+
+            // Insert OTP into the OTP table
+            String insertOtpQuery = "INSERT INTO OTPs (AccountNo, OTP, GeneratedAt) VALUES (?, ?, NOW())";
+            PreparedStatement stmt = conn.prepareStatement(insertOtpQuery);
+            stmt.setString(1, accountNo);
+            stmt.setInt(2, otp);
+
+            int rowsInserted = stmt.executeUpdate();
+
+            if (rowsInserted > 0) {
+                response.put("success", true);
+                response.put("otp", otp);
+            } else {
+                response.put("success", false);
+                response.put("message", "Failed to save OTP.");
+            }
+
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.put("success", false);
+            response.put("message", "Database error: " + e.getMessage());
+        }
+    }
+
+    out.print(new com.google.gson.Gson().toJson(response));
+%>

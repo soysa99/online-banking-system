@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Time Bill Payment Summary</title>
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<% 
+    // Redirect to login if user is not authenticated
+    if (session.getAttribute("name") == null) {
+        response.sendRedirect("../login.jsp");
+        return;
+    }
+
+    // Retrieve form data
+    String accountNo = request.getParameter("accountNo");
+    String billAccountNo = request.getParameter("billAccountNo");
+    String payeeCategory = request.getParameter("payeeCategory");
+    String serviceProvider = request.getParameter("serviceProvider");
+    String amount = request.getParameter("amount");
+    String paymentDate = request.getParameter("paymentDate");
+%>
+
+<jsp:include page="../inc/header.jsp" />
+
+<div class="flex">
+    <jsp:include page="../inc/acc-dash.jsp" />
+
+    <div class="container">
+        <div class="cardG flex-col">
+            <h2>One Time Bill Payment Summary</h2>
+
+            <!-- Summary List -->
+            <ul>
+                <li>From Account Number: <strong><%= accountNo %></strong></li>
+                <li>Billing Account Number: <strong><%= billAccountNo %></strong></li>
+                <li>Payee Category: <strong><%= payeeCategory %></strong></li>
+                <li>Service Provider: <strong><%= serviceProvider %></strong></li>
+                <li>Amount LKR: <strong><%= amount %></strong></li>
+                <li>Payment Date: <strong><%= paymentDate %></strong></li>
+            </ul>
+
+            <!-- OTP Request Section -->
+            <div class="m-10">
+                <h3>Request OTP</h3>
+                <form action="otp.jsp" method="post">
+                    <input type="hidden" name="accountNo" value="<%= accountNo %>">
+                    <input type="hidden" name="billAccountNo" value="<%= billAccountNo %>">
+                    <input type="hidden" name="payeeCategory" value="<%= payeeCategory %>">
+                    <input type="hidden" name="serviceProvider" value="<%= serviceProvider %>">
+                    <input type="hidden" name="amount" value="<%= amount %>">
+                    <input type="hidden" name="paymentDate" value="<%= paymentDate %>">
+
+                    <div class="form-item flex-col">
+                        <label>Delivery Method:</label><br>
+                        <input type="radio" id="sms" name="deliveryMethod" value="SMS" checked>
+                        <label for="sms">SMS</label>
+                        <input type="radio" id="email" name="deliveryMethod" value="EMAIL">
+                        <label for="email">EMAIL</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Request OTP</button>
+                </form>
+
+                <!-- Confirm OTP Section -->
+                <form action="processPayment.jsp" method="post">
+                    <input type="hidden" name="accountNo" value="<%= accountNo %>">
+                    <input type="hidden" name="billAccountNo" value="<%= billAccountNo %>">
+                    <input type="hidden" name="payeeCategory" value="<%= payeeCategory %>">
+                    <input type="hidden" name="serviceProvider" value="<%= serviceProvider %>">
+                    <input type="hidden" name="amount" value="<%= amount %>">
+                    <input type="hidden" name="paymentDate" value="<%= paymentDate %>">
+
+                    <div class="form-item flex-col">
+                        <label>OTP:</label>
+                        <input type="text" name="otp" placeholder="Enter OTP" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Confirm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

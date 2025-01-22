@@ -1,0 +1,65 @@
+import java.io.IOException;
+import java.sql.*;
+import java.util.ArrayList;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+// Model class to represent Bill Payee
+class BillPayee {
+    private int payeeID;
+    private String nic;
+    private String billAccountNo;
+    private String payeeCategory;
+    private String serviceProvider;
+    private String description;
+
+    // Getters and Setters
+    public int getPayeeID() { return payeeID; }
+    public void setPayeeID(int payeeID) { this.payeeID = payeeID; }
+    public String getNic() { return nic; }
+    public void setNic(String nic) { this.nic = nic; }
+    public String getBillAccountNo() { return billAccountNo; }
+    public void setBillAccountNo(String billAccountNo) { this.billAccountNo = billAccountNo; }
+    public String getPayeeCategory() { return payeeCategory; }
+    public void setPayeeCategory(String payeeCategory) { this.payeeCategory = payeeCategory; }
+    public String getServiceProvider() { return serviceProvider; }
+    public void setServiceProvider(String serviceProvider) { this.serviceProvider = serviceProvider; }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+}
+
+@WebServlet("/BillPayeeServlet")
+public class BillPayeeModel extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String jdbcURL = "jdbc:mysql://localhost:3306/your_database_name";
+        String dbUser = "root";
+        String dbPassword = "";
+
+        ArrayList<BillPayee> payees = new ArrayList<>();
+
+        try (Connection conn = DriverManager.getConnection(jdbcURL, dbUser, dbPassword)) {
+            String query = "SELECT PayeeID, NIC, BillAccountNo, PayeeCategory, ServiceProvider, Description FROM BillPayee";
+            Statement statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                BillPayee payee = new BillPayee();
+                payee.setPayeeID(resultSet.getInt("PayeeID"));
+                payee.setNic(resultSet.getString("NIC"));
+                payee.setBillAccountNo(resultSet.getString("BillAccountNo"));
+                payee.setPayeeCategory(resultSet.getString("PayeeCategory"));
+                payee.setServiceProvider(resultSet.getString("ServiceProvider"));
+                payee.setDescription(resultSet.getString("Description"));
+                payees.add(payee);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        request.setAttribute("payees", payees);
+        request.getRequestDispatcher("billPayee.jsp").forward(request, response);
+    }
+}
