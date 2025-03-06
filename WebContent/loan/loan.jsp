@@ -5,7 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Loan/Financing Services | Your Road to Safety and Savings</title>
+=======
+    <title>lone | Your Road to Safety and Savings</title>
+>>>>>>> 45840b3b6bae22e51e89743646c4afaab50b5e84
     <link rel="stylesheet" href="../assets/style.css">
     <!--font awesome-->
     <script src="https://kit.fontawesome.com/72fb3712df.js" crossorigin="anonymous"></script>
