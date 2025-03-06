@@ -21,7 +21,7 @@ public class UpdateBillPayee extends HttpServlet {
     public UpdateBillPayee() {
         super();
     }
-
+    // Overriding the doPost method 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
     	String PayeeID = request.getParameter("PayeeID"); 

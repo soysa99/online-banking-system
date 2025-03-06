@@ -22,17 +22,34 @@
 
         <div class=" flex-col content-wrapper m-10">
 
+<style>
+   
+        .service-card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+    </style>
 
             <ul class="bredcrumb">
                 <li>Home</li>
                 <li><i class="fa-solid fa-chevron-right"></i></li>
-                <li><a href="account.jsp">Account Services</a></li>
+                <li><a href="account.jsp">General Services</a></li>
             </ul>
 
             <div class="flex m-10 m-10">
-                <div class="dash_container m-10">
+                <div class="dash_container m-10  ">
 
-                      <a class="dash_box" href=".jsp">
+                      <a class="dash_box" href="general-services.jsp">
                         <i class="fa-solid fa-file-invoice fa-4x"></i>
                         <h3 class="m-10 bold">General Services</h3>
                     </a>

@@ -27,7 +27,7 @@ public class DeletePayee extends HttpServlet {
         
     }
 
-	
+    // Overriding the doGet method 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String PayeeId = request.getParameter("id"); 
         HttpSession session = request.getSession();

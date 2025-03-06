@@ -11,7 +11,7 @@
 	
 
 <div class="topnav">
-  <a class="active" href="../dashboard/index.jsp">Home</a>
+  <a class="active" href="index.jsp">Home</a>
   <a href="index.jsp">News</a>
   <a href="#contact">Contact us</a>
   <a href="#about">About us</a>
@@ -22,7 +22,7 @@
 
 <div class="header">
     <div class="logo">
-        <img src="../img/logo.png" alt="Trust Wave">
+<img src="<%= request.getContextPath() %>/img/logo.png" alt="Trust Wave">
     </div>
 
     <div class="navbar">

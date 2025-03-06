@@ -19,7 +19,7 @@ public class DeleteBillPayee extends HttpServlet {
     public DeleteBillPayee() {
         super();
     }
-
+    // Overriding the doGet method 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String billAccountNo = request.getParameter("id"); // Get the BillAccountNo from the request parameter
         HttpSession session = request.getSession();

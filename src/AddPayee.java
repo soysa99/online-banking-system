@@ -28,13 +28,13 @@ public class AddPayee extends HttpServlet {
         super();
     }
 
-	
+    // Overriding the doGet method 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	
+	 // Overriding the doPost method 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		String NIC = (String) request.getSession().getAttribute("NIC");

@@ -38,7 +38,7 @@
                     </a>
 
 
-                    <a class="dash_box" href=".jsp">
+                    <a class="dash_box" href="account-Maintenance.jsp">
                         <i class="fa-solid fa-user-gear fa-4x"></i>
                         <h3 class="m-10 bold">Account Maintenance</h3>
                     </a>

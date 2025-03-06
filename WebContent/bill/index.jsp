@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bill Payment | Your Road to Safety and Savings</title>
-    <link rel="stylesheet" href="../assets/style.css">
+      <link rel="stylesheet" href="../assets/style.css">
     <script src="https://kit.fontawesome.com/72fb3712df.js" crossorigin="anonymous"></script>
 </head>
 
@@ -54,11 +54,7 @@
                         <h3 class="m-10 bold">Payment History
                         </h3>
                     </a>
-
-                    <a class="dash_box" href="#">
-                       <i class="fa-solid fa-clock-rotate-left fa-4x"></i>
-                        <h3 class="m-10 bold">Auto Payment Maintenance</h3>
-                    </a>
+				
 
                 </div>
             </div>

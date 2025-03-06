@@ -16,9 +16,8 @@ import java.sql.SQLException;
 
 @WebServlet("/DeleteBeneficiary")
 public class DeleteBeneficiary extends HttpServlet {
-    /**
-	 * 
-	 */
+    
+	
 	private static final long serialVersionUID = 1L;
 	
 	  public DeleteBeneficiary() {
@@ -29,7 +28,7 @@ public class DeleteBeneficiary extends HttpServlet {
 	        String beneficiaryId = request.getParameter("id"); // Get the BillAccountNo from the request parameter
 	        HttpSession session = request.getSession();
 
-	        // Log the incoming BillAccountNo for debugging
+	       
 	        System.out.println("Deleting Bill Account No: " + beneficiaryId);
 
 	        // Check for a valid BillAccountNo
@@ -40,6 +39,7 @@ public class DeleteBeneficiary extends HttpServlet {
 	        }
 
 	        try (Connection conn = dbconnect.connect()) {
+	        	
 	            // Check if the connection was established successfully
 	            if (conn == null) {
 	                System.out.println("Database connection failed.");
@@ -48,8 +48,8 @@ public class DeleteBeneficiary extends HttpServlet {
 	                return;
 	            }
 
-	            // Prepare the SQL DELETE statement
-	            String deleteQuery = "DELETE FROM beneficiaries WHERE BeneficiaryID = ?";
+	           
+	            String deleteQuery = "DELETE FROM beneficiaries WHERE BeneficiaryID = ?";  // Prepare the SQL DELETE statement
 	            try (PreparedStatement stmt = conn.prepareStatement(deleteQuery)) {
 	                stmt.setString(1, beneficiaryId);
 	                int rowsAffected = stmt.executeUpdate();

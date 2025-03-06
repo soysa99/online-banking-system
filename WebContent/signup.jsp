@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
+    <title>Signup Form</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="assets/style.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -16,7 +16,7 @@
         }
 
         body {
-            background-image: url('img/pp.jpeg');
+            background-image: url('img/cc.jpg');
             background-size: cover; 
             background-position: center; 
             background-repeat: no-repeat; 
@@ -24,10 +24,10 @@
         }
 
         .cardG {
-            width: 500px;
+            width: 600px;
             height: auto;
-            margin-left: auto; 
-            margin-right: 30px; /* Align to the right */
+            margin-left: 0; 
+            margin-right: auto; 
             margin-top: 50px; 
             background: linear-gradient(to bottom right, #ffffff, #e6e6e6); 
             border-radius: 15px;
@@ -88,43 +88,37 @@
 
     <div class="flex-col content-wrapper">
         <div class="cardG">
-            <h4 class="text-center">Welcome to Online Banking</h4>
-            <h6 class="text-center">Please log in to continue</h6>
-            <form action="login" method="post">
+            <h5 class="text-center" style="margin-top:10px; font-size: 1.5rem; font-weight: bold;">Create Your Account</h5>
+            <form action="/login" method="post">
                 <div class="form-item">
                     <label for="username">Username:</label>
-                    <input type="text" id="username" value="shamal01" name="username" required>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+                
+                <div class="form-item">
+                    <label for="Number">Account Number:</label>
+                    <input type="number" id="Number" name="Number" placeholder="Enter your account number" required>
                 </div>
                 
                 <div class="form-item">
                     <label for="password">Password</label>
-                    <input type="password" id="password"value="123" name="password" required>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
                 </div>
                 
                 <div class="form-item">
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Re-enter your password" required>
+                </div>
+                <div class="form-item">
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
                 </div>
                 <div class="text-center">
                     <p class="forget-password">Forgot your password? <a href="/reset-password">Reset it here</a></p>
                 </div>
             </form>
-            
-            <div class="mt-3">
-                <% 
-                    String errorMessage = (String) request.getAttribute("errorMessage");
-                    if (errorMessage != null) {
-                %>
-                <div class="alert alert-danger">
-                    <%= errorMessage %>
-                </div>
-                <% } %>
-            </div>
         </div>
     </div>
 
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
 </body>
 </html>

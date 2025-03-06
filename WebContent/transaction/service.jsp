@@ -49,7 +49,7 @@
            </div>
            
            <div class="flex" style="margin-top: 10px" >
-            <a href=""><button class="btn btn-primary align-center flex service" >Own Account Transfer</button></a>
+            <a href="ownacc-transfer.jsp"><button class="btn btn-primary align-center flex service" >Own Account Transfer</button></a>
            </div>
 
            <div class="flex" style="margin-top: 10px" >

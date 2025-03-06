@@ -19,8 +19,11 @@ public class AddBeneficiary extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	// Handle POST requests
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		 // Retrieving parameters from the request
         String beneficiaryAccountNo = request.getParameter("beneficiaryAccountNo");
         String beneficiaryName = request.getParameter("beneficiaryName");
         String bank = request.getParameter("bank");
@@ -39,6 +42,7 @@ public class AddBeneficiary extends HttpServlet {
         beneficiary.setBeneficiaryType(beneficiaryType);
 
         try (Connection conn = dbconnect.connect()) {
+        	
             String sql = "INSERT INTO beneficiaries (BeneficiaryAccountNo, BeneficiaryName, Bank, Branch, BeneficiaryNickname, AccountType, BeneficiaryType) VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, beneficiary.getBeneficiaryAccountNo());
@@ -54,11 +58,11 @@ public class AddBeneficiary extends HttpServlet {
             
     if (rs > 0) {
             	
-            	response.sendRedirect("beneficiary/manage-beneficiary.jsp");
+            	response.sendRedirect("beneficiary/manage-beneficiary.jsp"); // Redirect to the manage beneficiaries page if successful
 
                 
             } else {
-                response.getWriter().println("Failed to add Bill payee.");
+                response.getWriter().println("Failed to add Bill payee."); // Send an error message if the operation failed
             }
 
         } catch (SQLException e) {

@@ -73,7 +73,7 @@
 
                     <div class="dash_box" onclick="window.location.href='contact-us.php';" style="cursor: pointer;">
                         <i class="fa-solid fa-file-invoice fa-4x"></i>
-                        <h3 class="m-10 bold">Multiple Fund Transfer</h3>
+                        <h3 class="m-10 bold">Multiple Fund <br>Transfer</h3>
                     </div>
 
                     <div class="dash_box" onclick="window.location.href='contact-us.php';" style="cursor: pointer;">
@@ -87,10 +87,7 @@
                         <h3 class="m-10 bold">Branch To Branch <br> fund Transfer </h3>
                     </div>
 
-                    <div class="dash_box" onclick="window.location.href='contact-us.php';" style="cursor: pointer;">
-                        <i class="fa-solid fa-file-invoice fa-4x"></i>
-                        <h3 class="m-10 bold">Auto InterBank <br> fund Transfer </h3>
-                    </div>
+                 
 
 
 

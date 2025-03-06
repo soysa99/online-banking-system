@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
 <%@ page import="config.dbconnect" %>
@@ -101,7 +102,7 @@
                         <button type="submit" class="btn btn-primary">Update Beneficiary</button>
                     </div>
                 </form>
-                <a href="manage-beneficiary.jsp" class="btn btn-secondary">Back to Manage Beneficiaries</a>
+                <a href=".../beneficiary/manage-beneficiary.jsp" class="btn btn-secondary">Back to Manage Beneficiaries</a>
             </div>
         </div>
     </div>

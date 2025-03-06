@@ -23,7 +23,7 @@ public class EditPayee extends HttpServlet {
     public EditPayee() {
         super();
     }
-	
+    // Overriding the doPost method 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String payeeId = request.getParameter("PayeeId"); 
         String payeeName = request.getParameter("PayeeName");

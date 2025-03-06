@@ -1,5 +1,6 @@
 
 
+
 import config.dbconnect;
 import models.BeneficiaryModel;
 
@@ -15,9 +16,8 @@ import java.sql.SQLException;
 
 @WebServlet("/UpdateBeneficiary")
 public class UpdateBeneficiary extends HttpServlet {
-    /**
-	 * 
-	 */
+   
+	
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -55,6 +55,8 @@ public class UpdateBeneficiary extends HttpServlet {
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected > 0) {
                 request.getSession().setAttribute("success_message", "Beneficiary updated successfully!");
+                response.sendRedirect("beneficiary/manage-beneficiary.jsp");  
+                
             } else {
                 request.setAttribute("errorMessage", "Failed to update beneficiary. Please try again.");
             }
@@ -63,6 +65,6 @@ public class UpdateBeneficiary extends HttpServlet {
             request.setAttribute("errorMessage", "An error occurred: " + e.getMessage());
         }
 
-        request.getRequestDispatcher("edit-beneficiary.jsp?beneficiaryId=" + beneficiaryId).forward(request, response);
+      
     }
 }

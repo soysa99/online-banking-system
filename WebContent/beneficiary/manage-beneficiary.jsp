@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
 <%@ page import="config.dbconnect" %>
@@ -40,10 +41,8 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Account No</th>
                             <th>Bank</th>
                             <th>Branch</th>
-                            <th>Nickname</th>
                             <th>Account Type</th>
                             <th>Beneficiary Type</th>
                             <th>Actions</th>
@@ -68,10 +67,8 @@
                         %>
                         <tr>
                             <td><%= beneficiaryName %></td>
-                            <td><%= accountNo %></td>
                             <td><%= bank %></td>
                             <td><%= branch %></td>
-                            <td><%= nickname %></td>
                             <td><%= accountType %></td>
                             <td><%= beneficiaryType %></td>
                             <td>

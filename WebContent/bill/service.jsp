@@ -50,11 +50,11 @@
            </div>
            
            <div class="flex" style="margin-top: 10px" >
-            <a href=""><button class="btn btn-primary align-center flex service" > Favorite Bill Payment</button></a>
+            <a href="favbill-payee.jsp"><button class="btn btn-primary align-center flex service" > Favorite Bill Payment</button></a>
            </div>
 
            <div class="flex" style="margin-top: 10px" >
-            <a href=""><button class="btn btn-primary align-center flex service" > Quick Reload</button></a>
+            <a href="reload.jsp"><button class="btn btn-primary align-center flex service" > Quick Reload</button></a>
            </div>
 
            <div class="flex" style="margin-top: 10px" >

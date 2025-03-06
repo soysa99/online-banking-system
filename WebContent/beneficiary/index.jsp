@@ -28,12 +28,12 @@
             <div class="flex m-10 m-10">
                 <div class="dash_container m-10">
                     <a class="dash_box" href="add-beneficiary.jsp">
-                        <i class="fa-solid fa-lock fa-4x"></i>
+                        <i class="fa-solid fa-plus fa-4x"></i>
                         <h3 class="m-10 bold">Add Beneficiary</h3>
                     </a>
 
                     <a class="dash_box" href="manage-beneficiary.jsp">
-                        <i class="fa-solid fa-lock fa-4x"></i>
+                        <i class="fa-solid fa-people-roof fa-4x"></i>
                         <h3 class="m-10 bold">Manage Beneficiary</h3>
                     </a>
                 </div>
